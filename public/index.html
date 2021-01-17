@@ -15,10 +15,48 @@
         margin: 0;
       }
     </style>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="p5.min.js"></script>
-    <script src="p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+              <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+              <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+              <script src="/socket.io/socket.io.js"></script>
+              <script src="p5.min.js"></script>
+            <link rel="stylesheet" href="styles.css">
+
   </head>
-  <body></body>
+
+
+  <body>
+
+            <h1>Pasta Chute</h1>
+            </div>
+
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+                 https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+                <script>
+                var firebaseConfig = {
+                  apiKey: "AIzaSyCgOJASM3a10GY-GpRaDC4wY9ExqsHK-9E",
+                  authDomain: "tutorial1-fd636.firebaseapp.com",
+                  projectId: "tutorial1-fd636",
+                  storageBucket: "tutorial1-fd636.appspot.com",
+                  messagingSenderId: "361816003225",
+                  appId: "1:361816003225:web:c224e7125b7e88bdf11e08",
+                  measurementId: "G-FTQTPYZW2N"
+                };
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                let db = firebase.firestore();
+                db.settings({ timestampsInSnapshots: true });
+                firebase.analytics();
+                </script>
+
+            <script src="sketch.js"></script>
+
+  </body>
 </html>

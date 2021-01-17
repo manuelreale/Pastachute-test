@@ -18,19 +18,20 @@ let io = socket(server);
 io.on("connection", newConnection);
 // callback function: the paramenter (in this case socket)
 // will contain all the information on the new connection
+
+
+//NEW CONNECTION
 function newConnection(socket) {
-  //when a new connection is created, print its id
-  console.log("socket:", socket.id);
+  // console.log("new connection: " + socket.client.id)
+  socket.on("mousedx", mouseMessagedx);
+  socket.on("mousesx", mouseMessagesx);
 
-  //define what to do on different kind of messages
-  socket.on("mouse", mouseMessage);
+  function mouseMessagedx() {
+    socket.broadcast.emit("mousedxBroadcast")
+  }
 
-  // create the mouseMessage function
-  function mouseMessage(data) {
-    // send the data to all the other clients
-    socket.broadcast.emit("mouseBroadcast", data);
-    // log the sent data
-    console.log(socket.id, data);
+  function mouseMessagesx() {
+      socket.broadcast.emit("mousesxBroadcast")
   }
 }
 
