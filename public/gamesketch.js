@@ -129,12 +129,12 @@ text(20 - timer, windowWidth / 2, 200)
     rectMode(CENTER)
     strokeWeight(5)
     textAlign(CENTER)
-    textSize(150)
+    textSize(80)
     fill(255)
     stroke('red')
-    rect(windowWidth/2+20,windowHeight/2+20,2500,800)
+    rect(windowWidth/2+20,windowHeight/2+20,800,400)
     stroke(0)
-    rect(windowWidth/2,windowHeight/2,2500,800)
+    rect(windowWidth/2,windowHeight/2,800,400)
     strokeWeight(0)
     fill(0)
     text(winner + ' won this game', windowWidth/2,windowHeight/2)
@@ -189,6 +189,8 @@ function mouseClicked() {
       })
     }
 
+}
 
-
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
