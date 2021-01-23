@@ -15,8 +15,13 @@ let c;
 let nomi = ['Tagliatelle', 'Penne rigate', 'Spaghetti', 'Lasagne', 'Mezze maniche', 'Capellini', 'Gnocchi sardi', 'Orecchiete', 'Fusilli']
 let i = 0;
 let ric = false;
+let pastaList;
+let li;
+let namerank;
+let scorerank;
 
 let pastaimg = [];
+
 
 //MATTER.JS
 // module aliases
@@ -28,7 +33,6 @@ var Engine = Matter.Engine,
 var engine;
 var world;
 var boxes = [];
-
 var ground;
 
 
@@ -38,18 +42,6 @@ socket.on("vs", function getPasta(data1, data2) {
   vs1 = data1;
   vs2 = data2;
 
-  console.log('vs1: ' + vs1)
-  console.log('vs2: ' + vs2)
-
-  // pasta.doc(vs1.toString())
-  //   .get(function(doc) {
-  //     a = doc.data().score;
-  //   });
-  //
-  // pasta.doc(vs2.toString())
-  //   .get(function(doc) {
-  //     b = doc.data().score;
-  //   });
 
   ric = true;
 
@@ -83,14 +75,13 @@ function getTimer(data) {
 
 
 function preload() {
-// img1 = loadImage('./assets/farfalla.png');
-// img2 = loadImage('./assets/penna.png');
 for (var m=0; m<=7; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
 }
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  var cnv =  createCanvas(windowWidth, windowHeight);
+  cnv.id('myCanvas');
   background('white')
 
   //MATTER.JS
@@ -116,32 +107,48 @@ function setup() {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
-
-  pasta = db.collection("pasta")
-  pasta.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      pastadb[i] = {
-        name: doc.data().name,
-        score: doc.data().score
-      };
-      i++;
-    });
-  })
+  db.settings({ timestampsInSnapshots: true });
+  pasta = db.collection("pasta");
 
 
+  // pasta.get().then((querySnapshot) => {
+  //   querySnapshot.forEach((doc) => {
+  //     pastadb[i] = {
+  //       name: doc.data().name,
+  //       score: doc.data().score
+  //     };
+  //     i++;
+  //   });
+  // })
 
+
+
+  db.collection("pasta").orderBy('score').onSnapshot(snapshot => {
+    
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+          console.log(change.doc.data());
+          if(change.type == 'added'){
+            pastaList = document.getElementById('pasta-list');
+            li = document.createElement('li');
+            namerank  = document.createElement('span');
+            scorerank = document.createElement('span');
+            showrank(change.doc);
+          }
+      });
+  });
 }
 
 
 function draw() {
   clear()
-
-
   pastadb.sort(function(c, d) {
     return d.score - c.score;
   });
 
   if (phase == 0) {
+    punteggio1 = 0;
+    punteggio2 = 0;
     setTimeout(assegna, 750)
     background('white')
     fill("black")
@@ -157,8 +164,7 @@ function draw() {
 
   if (phase == 1) {
     clear()
-    showrank()
-    console.log('draw')
+
     Engine.update(engine);
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
@@ -169,7 +175,7 @@ function draw() {
     rectMode(LEFT);
     rect(0, ground.position.y - 60, windowWidth, 100);
     pop()
-    console.log('timer: ' + (25 - timer))
+    // console.log('timer: ' + (25 - timer))
 
     if (ric) {
       if (punteggio1 > punteggio2) {
@@ -215,7 +221,6 @@ function draw() {
 }
 
 function assegna() {
-  console.log('ASSEGNA DONE')
   pasta.doc(vs1.toString()).get().then(function(doc) {
     a = doc.data().score;
   })
@@ -258,29 +263,42 @@ function mouseClicked() {
     })
   }
 
-  createRank()
+
 }
 
 
 
-function showrank() {
+function showrank(doc) {
+
+  namerank.innerHTML = doc.data().name;
+  scorerank.innerHTML = doc.data().score;
+
+   li.appendChild(namerank);
+   li.appendChild(scorerank);
+
+   pastaList.appendChild(li);
 
 
-  for (let t = 0; t < pastadb.length; t++) {
-    pasta.doc(t.toString())
-      .onSnapshot(function(doc) {
-        pastadb[t] = {
-          name: doc.data().name,
-          score: doc.data().score
-        };
-      });
-      textSize(30)
-      push()
-      fill('red')
-      textAlign(LEFT);
-      text(pastadb[t].name + "____" + pastadb[t].score, 50, 300 + t * 50)
-      pop()
-  }
+
+  //
+  //
+  // for (let t = 0; t < pastadb.length; t++) {
+  //   pasta.doc(t.toString())
+  //     .onSnapshot(function(doc) {
+  //       pastadb[t] = {
+  //         name: doc.data().name,
+  //         score: doc.data().score
+  //       };
+  //     });
+  //     textSize(30)
+  //     push()
+  //     fill('red')
+  //     textAlign(LEFT);
+  //     text(pastadb[t].name + "____" + pastadb[t].score, 50, 300 + t * 50)
+  //     pop()
+  // }
+
+
 }
 
 
