@@ -1,29 +1,30 @@
-// load express library
-let express = require("express");
-// create the app
-let app = express();
-// define the port where client files will be provided
-let port = process.env.PORT || 3000;
-// start to listen to that port
-let server = app.listen(port);
-// provide static access to the files
-// in the "public" folder
-app.use(express.static("public"));
-// load socket library
-let socket = require("socket.io");
-// create a socket connection
-let io = socket(server);
-// define which function should be called
-// when a new connection is opened from client
-io.on("connection", newConnection);
-// callback function: the paramenter (in this case socket)
-// will contain all the information on the new connection
+console.log('node is running')
 
+let express = require("express");
+
+let socket = require("socket.io");
+
+let app = express();
+
+let port = process.env.PORT || 3000; //port given by heroku or local
+
+let server = app.listen(port);
+
+app.use(express.static("public"));
+
+let io = socket(server)
+
+io.on('connection', newConnection);
 
 let phase = 0;
 let timer = 0;
-let vs1 = 1
-let vs2 = Math.floor(Math.random() * 6)
+
+let vs1 = Math.floor(Math.random() * 7)
+let vs2 = Math.floor(Math.random() * 7)
+
+while(vs2 == vs1){
+vs2 =  Math.floor(Math.random() * 7)
+}
 
 let punteggio1 = 0;
 let punteggio2 = 0;
@@ -35,7 +36,8 @@ function newConnection(socket){
   function phasef(){
     socket.emit("timer", timer); //send timer
     socket.emit("vs",vs1,vs2);
-    socket.emit("scoreBroadcast", punteggio1, punteggio2) //send 2 pasta type
+
+
     socket.emit("phase"+phase); //send phase
   }
 
@@ -43,11 +45,13 @@ socket.on("mousedx", mouseMessagedx);
 socket.on("mousesx", mouseMessagesx);
 
  function mouseMessagedx() {
-   punteggio2++
+  punteggio2++
+  socket.broadcast.emit("scoreBroadcast2", punteggio2) //send 2 pasta type
  }
 
  function mouseMessagesx() {
   punteggio1++
+  socket.broadcast.emit("scoreBroadcast1", punteggio1)
  }
 
 }
@@ -65,13 +69,15 @@ setInterval(function(){
 
 function getRandomNumber() {
   var number = Math.floor(Math.random() * 7)
-  if(number != vs1 && number != vs2){
+  while(number == vs1 || number == vs2){
+  number = Math.floor(Math.random() * 7);}
+
   if(punteggio1 > punteggio2){
+  vs1 = vs1;
   vs2 = number; }
+
   if(punteggio1 < punteggio2){
   vs1 = vs2
-  vs2 = number;}}
-  else {
-  vs2 = Math.floor(Math.random() * 7)
-  }
+  vs2 = number;}
+
 }
