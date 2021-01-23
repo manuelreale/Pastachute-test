@@ -1,0 +1,176 @@
+:root {
+  --toggle-layer: 3;
+  --canvas-layer: 2;
+  --dropped-layer: 1;
+  --stop-layer: 6;
+  --forks-layer: 6;
+  --marquee-layer: 4;
+  --timer-layer: 5;
+}
+
+/**************TENDA**********/
+canvas {
+  right: 0;
+  bottom: 0;
+  z-index: var(--canvas-layer)
+}
+
+#toggle,
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+#toggle {
+  height: 100%;
+  width: 100%;
+  display: block;
+  z-index: var(--toggle-layer);
+  cursor: crosshair;
+}
+
+.dropped #toggle {
+  height: 60px;
+  display: none;
+  z-index: var(--dropped-layer)
+}
+
+.dropped canvas {
+  pointer-events: none
+}
+
+.dropped #curtain {
+  position: absolute;
+  opacity: 1;
+}
+
+.marquee {
+  z-index: var(--marquee-layer);
+  background-color: black;
+  bottom: 0;
+  position: absolute;
+}
+
+.text-marquee {
+  font-family: sans-serif;
+  color: white;
+}
+
+#canvacontainer {
+  width: 100vw;
+  height: 100vh;
+  border: solid black 1px;
+  margin: 0;
+  z-index: var(--forks-layer);
+  position: fixed;
+}
+
+#timer {
+  left: 50%;
+  font-family: neue-haas-grotesk-display;
+  font-weight: 600;
+  font-size: 10vw;
+  margin: 0;
+}
+
+#divtimer {
+  z-index: var(--timer-layer);
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
+
+#divstop {
+  width: 100%;
+  height: 30%;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  bottom: 0%;
+}
+
+#stop {
+  font-family: neue-haas-grotesk-display;
+  font-size: 1.5vw;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  top: 50%;
+  z-index: var(--stop-layer);
+  border: solid 2px black;
+  padding: 1% 2%;
+}
+
+
+#stop:hover{
+font-style: italic;
+color: red;
+}
+
+
+#header-final{
+font-family: baskerville-urw;
+font-style: italic;
+font-weight: 400;
+color: black;
+font-size: 7vw;
+display: inline-flex;
+cursor: pointer;
+margin-left: 4vw;
+margin-top: 4vw;
+}
+
+#div-header-final{
+  width:100%;
+  height:100%;
+  margin: 0;
+}
+
+#div-trivia{
+  width:25%;
+  height:80%;
+  border: solid 1px black;
+  position: absolute;
+bottom: 10%;
+  padding: 1vw;
+right: 4vw;
+display: flex;
+align-items: center;
+
+}
+
+#randomTrivia{
+  font-family: neue-haas-grotesk-display;
+  font-size: 2vw;
+  font-weight: 400;
+
+}
+
+#div-info{
+  width:20%;
+  height:30%;
+  /* border: solid 1px black; */
+  position: absolute;
+  bottom: 10%;
+left: 4vw;
+}
+#info{
+  font-family: neue-haas-grotesk-display;
+  font-size: 0.8vw;
+  font-weight: 400;
+margin-bottom: 10%;
+bottom: 0;
+position: absolute;
+}
+
+#dente{
+  width: 25%;
+  height: auto;
+  left:30%;
+  position: relative;
+}

@@ -19,6 +19,8 @@ let pastaList;
 let li;
 let namerank;
 let scorerank;
+let statotenda = false;
+
 
 let pastaimg = [];
 
@@ -57,6 +59,7 @@ socket.on("scoreBroadcast2", updatescore2);
 
 function phase0() {
   phase = 0;
+    Tenda()
 }
 
 function phase1() {
@@ -76,6 +79,8 @@ function getTimer(data) {
 
 function preload() {
 for (var m=0; m<=7; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
+bf = loadImage('assets/blackfork.png');
+wf = loadImage('assets/whitefork.png');
 }
 
 
@@ -124,7 +129,7 @@ function setup() {
 
 
   db.collection("pasta").orderBy('score').onSnapshot(snapshot => {
-    
+
       let changes = snapshot.docChanges();
       changes.forEach(change => {
           console.log(change.doc.data());
@@ -141,6 +146,7 @@ function setup() {
 
 
 function draw() {
+  console.log('timer server: ' +timer)
   clear()
   pastadb.sort(function(c, d) {
     return d.score - c.score;
@@ -150,13 +156,16 @@ function draw() {
     punteggio1 = 0;
     punteggio2 = 0;
     setTimeout(assegna, 750)
-    background('white')
-    fill("black")
-    textAlign(CENTER);
-    textSize(150);
-    text("Sala di attesa", windowWidth / 2, windowHeight / 4);
-    textSize(50);
-    text("Mancano " + (4 - timer) + " secondi all'inizio del Poll", windowWidth / 2, windowHeight / 2);
+    // background('white')
+    // fill("black")
+    // textAlign(CENTER);
+    // textSize(150);
+    // text("Sala di attesa", windowWidth / 2, windowHeight / 4);
+    // textSize(50);
+    // text("Mancano " + (4 - timer) + " secondi all'inizio del Poll", windowWidth / 2, windowHeight / 2);
+    if(!statotenda){
+    Tenda()
+    statotenda = true}
   }
 
 
@@ -216,6 +225,8 @@ function draw() {
     fill(0)
     text(winner + ' won this game', windowWidth / 2, windowHeight / 2)
     pop()
+    statotenda = true;
+
   }
 
 }

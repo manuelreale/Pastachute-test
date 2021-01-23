@@ -36,8 +36,6 @@ function newConnection(socket){
   function phasef(){
     socket.emit("timer", timer); //send timer
     socket.emit("vs",vs1,vs2);
-
-
     socket.emit("phase"+phase); //send phase
   }
 
