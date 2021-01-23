@@ -85,7 +85,7 @@ function getTimer(data) {
 function preload() {
 // img1 = loadImage('./assets/farfalla.png');
 // img2 = loadImage('./assets/penna.png');
-for (var m=0; m<=7; m++) {pastaimg[m] = loadImage("./assets/pasta/risorsa " + m + ".png");}
+for (var m=0; m<=7; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
 }
 
 
