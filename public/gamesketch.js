@@ -64,7 +64,6 @@ socket.on('mouseBroadcast', drawOtherMouse);
 
 function phase0() {
   phase = 0;
-    //Tenda()
 }
 
 function phase1() {
@@ -146,6 +145,7 @@ function setup() {
       changes.forEach(change => {
           //console.log(change.doc.data());
           if(change.type == 'added'){
+            console.log('snapshot')
             // namerank = document.getElementById('pasta-td-'+i);
             // namerank.innerHTML=change.doc.data().name
             // scorerank = document.getElementById('score-td-'+i);
@@ -155,6 +155,7 @@ function setup() {
           }
       });
   });
+  assegna()
 
 
 }
@@ -198,7 +199,7 @@ function draw() {
     }
     punteggio1 = 0;
     punteggio2 = 0;
-    setTimeout(assegna, 750)
+    // setTimeout(assegna, 750)
     if(!statotenda){
     console.log("chiamotenda")
     Tenda()
@@ -222,7 +223,7 @@ socket.emit("mouse", message)
 
   if (phase == 1) {
     countdown.style.display = 'none';
-    setInterval(assegna,1000);
+    // setTimeout(assegna,1000);
     statotenda = false
     clear()
 
@@ -285,6 +286,7 @@ socket.emit("mouse", message)
 }
 
 function assegna() {
+  console.log('vi faccio impazzire')
   pasta.doc(vs1.toString()).get().then(function(doc) {
     a = doc.data().score;
   })
@@ -327,7 +329,6 @@ function mouseClicked() {
     })
   }
 updateRank()
-assegna();
 }
 
 function updateRank(){
