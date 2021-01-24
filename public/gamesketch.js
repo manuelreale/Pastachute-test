@@ -12,7 +12,7 @@ let pastadb = [];
 let a;
 let b;
 let c;
-let nomi = ['Tagliatelle', 'Penne rigate', 'Spaghetti', 'Lasagne', 'Mezze maniche', 'Capellini', 'Gnocchi sardi', 'Orecchiete', 'Fusilli']
+let nomi = ['Mafaldine', 'Farfalle', 'Cavatappi', 'Casarecce', 'Maltagliati', 'Sedanini', 'Paccheri', 'Penne lisce', 'Ruote', 'Tagliatelle', 'Pipe', 'Ditalini', 'Spaghetti', 'Rigatoni', 'Tortiglioni', 'Mezze maniche', 'Gnocchi', 'Gnocchetti sardi', 'Stelline', 'Ravioli', 'Cappelletti', 'Trofie', 'Orecchiette', 'Fusilli', 'Penne rigate']
 let i = 0;
 let ric = false;
 let pastaList;
@@ -20,6 +20,8 @@ let li;
 let namerank;
 let scorerank;
 let statotenda = true;
+let users;
+let lastwinner;
 
 
 let pastaimg = [];
@@ -53,8 +55,11 @@ socket.on('phase0', phase0);
 socket.on('phase1', phase1);
 socket.on('phase2', phase2);
 socket.on("timer", getTimer);
+socket.on("usercount", usercount)
+socket.on("lastwinner", getlastwinner)
 socket.on("scoreBroadcast1", updatescore1);
 socket.on("scoreBroadcast2", updatescore2);
+socket.on('mouseBroadcast', drawOtherMouse);
 
 
 function phase0() {
@@ -74,11 +79,21 @@ function getTimer(data) {
   timer = data;
 }
 
+function usercount(data){
+  users = data
+  console.log('utenti: ' +users)
+}
+
+function getlastwinner(data){
+  lastwinner = data
+}
+
+
 
 
 
 function preload() {
-for (var m=0; m<=7; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
+for (var m=0; m<=24; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
 bf = loadImage('assets/blackfork.png');
 wf = loadImage('assets/whitefork.png');
 }
@@ -95,8 +110,10 @@ function setup() {
     let statotenda = true;
   }
   var cnv =  createCanvas(windowWidth, windowHeight);
-  cnv.id('myCanvas');
+  // cnv.id('myCanvas');
+  cnv.parent('canvacontainer')
   background('white')
+
 
   //MATTER.JS
   engine = Engine.create();
@@ -109,12 +126,12 @@ function setup() {
   World.add(world, ground);
 
   var firebaseConfig = {
-    apiKey: "AIzaSyDtkQChaipjNwxzQHFQ7FqJgNR2YZf9C-4",
-    authDomain: "pastachute-2.firebaseapp.com",
-    projectId: "pastachute-2",
-    storageBucket: "pastachute-2.appspot.com",
-    messagingSenderId: "443070626446",
-    appId: "1:443070626446:web:7d8c20c910933378af27df"
+    apiKey: "AIzaSyAKn-isX8FJ8M9qbVSRzdgxa5kuc_Lbmig",
+     authDomain: "pastachute25012021.firebaseapp.com",
+     projectId: "pastachute25012021",
+     storageBucket: "pastachute25012021.appspot.com",
+     messagingSenderId: "991915130834",
+     appId: "1:991915130834:web:cb484314fc294236f6920b"
   };
 
   // Initialize Firebase
@@ -123,31 +140,16 @@ function setup() {
   db.settings({ timestampsInSnapshots: true });
   pasta = db.collection("Pasta");
 
-
-  // pasta.get().then((querySnapshot) => {
-  //   querySnapshot.forEach((doc) => {
-  //     pastadb[i] = {
-  //       name: doc.data().name,
-  //       score: doc.data().score
-  //     };
-  //     i++;
-  //   });
-  // })
-
-
-
   db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
       let i=0;
       let changes = snapshot.docChanges();
       changes.forEach(change => {
           //console.log(change.doc.data());
           if(change.type == 'added'){
-            lol= document.getElementById('pasta-li-'+i);
-            lol.innerHTML=change.doc.data().name+": "+change.doc.data().score;
-            pastaList = document.getElementById('pasta-list');
-            li = document.createElement('li');
-            namerank  = document.createElement('span');
-            scorerank = document.createElement('span');
+            // namerank = document.getElementById('pasta-td-'+i);
+            // namerank.innerHTML=change.doc.data().name
+            // scorerank = document.getElementById('score-td-'+i);
+            // scorerank.innerHTML=change.doc.data().score
             i++
             // showrank(change.doc);
           }
@@ -158,49 +160,68 @@ function setup() {
 }
 let refresh=true;
 
-function draw() {
 
-  if(timer==18){
+function drawOtherMouse(data){
+clear();
+imageMode(CENTER);
+if(windowWidth<990){
+let altrimouse = image(bf, data.x * width, data.y *height, windowWidth/4,windowWidth/4);
+}else{
+altrimouse = image(bf, data.x * width, data.y * height, windowWidth/10,windowWidth/10);
+}
+}
+
+
+function draw() {
+  let countdown = document.getElementById('timer');
+  let utenti = document.getElementById('text-marquee');
+  utenti.innerHTML= "PASTA CHUTE // PASTA CHUTE // PASTA CHUTE " + "  --- USERS ONLINE: " + users + " ---  LIVE NOW:  " + nomi[vs1] + "  vs  " + nomi[vs2] + "  --- LAST WINNER:  " + nomi[lastwinner] + " --- PASTA CHUTE // PASTA CHUTE // PASTA CHUTE "
+  if(timer==20){
     refresh=false;
   }
 
-  if(timer==19 && !refresh){
+  if(timer==21 && !refresh){
     setTimeout(function(){
-      window.open("./index.html","_self");
-      let refresh=true;
-    },800)
+    window.open("./index.html","_self");
+    let refresh=true;
+  },300)
   }
-  //console.log('stato tenda: ' +statotenda)
   clear()
-  // pastadb.sort(function(c, d) {
-  //   return c.score - d.score;
-  // });
 
-  if (phase == 0) {
+
+   if (phase == 0) {
+     countdown.style.display = 'block';
+     countdown.innerHTML=  5 - timer
+
     for (var i = 0; i < boxes.length; i++) {
       boxes.splice(i,1);
     }
     punteggio1 = 0;
     punteggio2 = 0;
     setTimeout(assegna, 750)
-    // background('white')
-    // fill("black")
-    // textAlign(CENTER);
-    // textSize(150);
-    // text("Sala di attesa", windowWidth / 2, windowHeight / 4);
-    // textSize(50);
-    // text("Mancano " + (4 - timer) + " secondi all'inizio del Poll", windowWidth / 2, windowHeight / 2);
-
     if(!statotenda){
     console.log("chiamotenda")
-     Tenda()
+    Tenda()
     statotenda = true}
-  }
+
+if(windowWidth<990){
+image(wf, mouseX, mouseY, windowWidth/4, windowWidth/4)
+}else{
+image(wf, mouseX, mouseY, windowWidth/10, windowWidth/10);
+}
+let message = {
+  x: mouseX/width,
+  y: mouseY/height,
+};
+socket.emit("mouse", message)
+
+}
 
 
   // POLL
 
   if (phase == 1) {
+    countdown.style.display = 'none';
     setInterval(assegna,1000);
     statotenda = false
     clear()
@@ -213,7 +234,7 @@ function draw() {
     noStroke(255);
     fill('red');
     rectMode(LEFT);
-    rect(0, ground.position.y - 60, windowWidth, 100);
+    // rect(0, ground.position.y - 40, windowWidth, 100);
     pop()
     // console.log('timer: ' + (25 - timer))
 
@@ -241,6 +262,7 @@ function draw() {
   }
 
   if (phase == 2) {
+    countdown.style.display = 'none';
     ric = false;
     push()
     rectMode(CENTER)
@@ -287,7 +309,6 @@ function updatescore2(data1) {
 
 
 function mouseClicked() {
-
   if (mouseX < windowWidth / 2) {
     punteggio1++
     boxes.push(new Box1(mouseX, mouseY, 60,17));
@@ -310,62 +331,22 @@ assegna();
 }
 
 function updateRank(){
-  //let scorelistings = getElementsByTagName("li")
-  // for(var i=0; i<scorelistings.length;i++){
-  //   scorelistings[i].remove
-  // }
-
-  db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
-let i=0;
-      let changes = snapshot.docChanges();
-      changes.forEach(change => {
-          //console.log(change.doc.data());
-          if(change.type == 'added'){
-            lol= document.getElementById('pasta-li-'+i);
-            lol.innerHTML=change.doc.data().name+": "+change.doc.data().score;
-            pastaList = document.getElementById('pasta-list');
-            li = document.createElement('li');
-            namerank  = document.createElement('span');
-            scorerank = document.createElement('span');
-            i++
-            // showrank(change.doc);
-          }
-      });
-  });
-
-}
-
-function showrank(doc) {
-// lol= document.getElementById('pasta-li-'+i);
-// lol.innerHTML=5;
-//   namerank.innerHTML = doc.data().name;
-//   scorerank.innerHTML = doc.data().score;
-//
-//    li.appendChild(namerank);
-//    li.appendChild(scorerank);
-//    li.class='scorelisting'
-//    pastaList.appendChild(li);
-//
-//
-
-  //
-  //
-  // for (let t = 0; t < pastadb.length; t++) {
-  //   pasta.doc(t.toString())
-  //     .onSnapshot(function(doc) {
-  //       pastadb[t] = {
-  //         name: doc.data().name,
-  //         score: doc.data().score
-  //       };
-  //     });
-  //     textSize(30)
-  //     push()
-  //     fill('red')
-  //     textAlign(LEFT);
-  //     text(pastadb[t].name + "____" + pastadb[t].score, 50, 300 + t * 50)
-  //     pop()
-  // }
-
+// db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
+// let i=0;
+//       let changes = snapshot.docChanges();
+//       changes.forEach(change => {
+//           //console.log(change.doc.data());
+//           if(change.type == 'added'){
+//             // namerank = document.getElementById('pasta-td-'+i);
+//             // namerank.innerHTML=change.doc.data().name
+//             // scorerank = document.getElementById('score-td-'+i);
+//             // scorerank.innerHTML=change.doc.data().score
+//             //
+//             // pastaList = document.getElementById('pasta-list');
+//             i++
+//           }
+//       });
+//   });
 
 }
 

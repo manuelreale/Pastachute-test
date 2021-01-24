@@ -1,6 +1,3 @@
-//funzione tovaglia, F() è la funzione che la fa cadere. all'interno c'è il timer che la fa cadere dopo 5 secondi.
-
-
 
 function Tenda(data) {
   let qgotten = false;
@@ -250,11 +247,11 @@ function Tenda(data) {
   }
 
   function F() {
-
-    if (qgotten)
+    if(qgotten){
     0 < q.length ? (q = y[0], document.body.classList.add("dropped")) :
-      (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
+    (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
   }
+}
 
   function startTimer() {
     if(timer==0){
@@ -267,12 +264,10 @@ function Tenda(data) {
       // document.getElementById('canvacontainer').style.display = 'none';
       F()
       }
-
-
   }
 
-    display = document.querySelector('#timer');
-   setInterval(startTimer, 1000)
+  display = document.querySelector('#timer');
+  setInterval(startTimer, 1000)
 
 
 };

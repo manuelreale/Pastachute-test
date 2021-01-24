@@ -25,7 +25,7 @@ function Box1(x, y, w, h) {
     stroke(255);
     fill(127);
     imageMode(CENTER)
-    image(pastaimg[vs1], this.w-60, this.h-16,70,53);
+    image(pastaimg[vs1], this.w-60, this.h-16,pastaimg[vs1].width/4,pastaimg[vs1].height/4);
     //rect(0, 0, this.w, this.h);
     pop();
   };
