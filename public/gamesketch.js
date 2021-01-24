@@ -162,7 +162,7 @@ let refresh=true;
 
 
 function drawOtherMouse(data){
-clear();
+
 imageMode(CENTER);
 if(windowWidth<990){
 let altrimouse = image(bf, data.x * width, data.y *height, windowWidth/4,windowWidth/4);
