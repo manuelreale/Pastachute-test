@@ -19,7 +19,7 @@ let pastaList;
 let li;
 let namerank;
 let scorerank;
-let statotenda = false;
+let statotenda;
 
 
 let pastaimg = [];
@@ -59,7 +59,7 @@ socket.on("scoreBroadcast2", updatescore2);
 
 function phase0() {
   phase = 0;
-    Tenda()
+
 }
 
 function phase1() {
@@ -153,27 +153,25 @@ function draw() {
   });
 
   if (phase == 0) {
+
     punteggio1 = 0;
     punteggio2 = 0;
-    setTimeout(assegna, 750)
-    // background('white')
-    // fill("black")
-    // textAlign(CENTER);
-    // textSize(150);
-    // text("Sala di attesa", windowWidth / 2, windowHeight / 4);
-    // textSize(50);
-    // text("Mancano " + (4 - timer) + " secondi all'inizio del Poll", windowWidth / 2, windowHeight / 2);
+    setTimeout(assegna, 250)
+    // console.log('statotenda: ' + statotenda)
+
     if(!statotenda){
     Tenda()
-    statotenda = true}
+    statotenda = true
+  }
+
   }
 
 
   // POLL
 
   if (phase == 1) {
+    statotenda = true
     clear()
-
     Engine.update(engine);
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
@@ -210,7 +208,10 @@ function draw() {
   }
 
   if (phase == 2) {
+
     ric = false;
+    if(timer > 24){
+    statotenda = false;}
     push()
     rectMode(CENTER)
     strokeWeight(5)
@@ -225,7 +226,7 @@ function draw() {
     fill(0)
     text(winner + ' won this game', windowWidth / 2, windowHeight / 2)
     pop()
-    statotenda = true;
+
 
   }
 
