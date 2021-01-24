@@ -1,6 +1,6 @@
 let socket = io();
 const increment = firebase.firestore.FieldValue.increment(1);
-let phase = 0;
+let phase = 2;
 let timer = 0;
 let vs1;
 let vs2;
@@ -19,7 +19,7 @@ let pastaList;
 let li;
 let namerank;
 let scorerank;
-let statotenda;
+let statotenda = true;
 
 
 let pastaimg = [];
@@ -59,7 +59,7 @@ socket.on("scoreBroadcast2", updatescore2);
 
 function phase0() {
   phase = 0;
-
+    //Tenda()
 }
 
 function phase1() {
@@ -85,6 +85,15 @@ wf = loadImage('assets/whitefork.png');
 
 
 function setup() {
+  if(phase == 0){
+    let statotenda = false;
+  }
+  if(phase == 1){
+    let statotenda = true;
+  }
+  if(phase == 2){
+    let statotenda = true;
+  }
   var cnv =  createCanvas(windowWidth, windowHeight);
   cnv.id('myCanvas');
   background('white')
@@ -96,24 +105,23 @@ function setup() {
   var options = {
     isStatic: true
   };
-  ground = Bodies.rectangle(0, height, windowWidth * 2, 100, options);
+  ground = Bodies.rectangle(0, height, windowWidth*10 , 100, options);
   World.add(world, ground);
 
   var firebaseConfig = {
-    apiKey: "AIzaSyCgOJASM3a10GY-GpRaDC4wY9ExqsHK-9E",
-    authDomain: "tutorial1-fd636.firebaseapp.com",
-    projectId: "tutorial1-fd636",
-    storageBucket: "tutorial1-fd636.appspot.com",
-    messagingSenderId: "361816003225",
-    appId: "1:361816003225:web:c224e7125b7e88bdf11e08",
-    measurementId: "G-FTQTPYZW2N"
+    apiKey: "AIzaSyDtkQChaipjNwxzQHFQ7FqJgNR2YZf9C-4",
+    authDomain: "pastachute-2.firebaseapp.com",
+    projectId: "pastachute-2",
+    storageBucket: "pastachute-2.appspot.com",
+    messagingSenderId: "443070626446",
+    appId: "1:443070626446:web:7d8c20c910933378af27df"
   };
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
   db.settings({ timestampsInSnapshots: true });
-  pasta = db.collection("pasta");
+  pasta = db.collection("Pasta");
 
 
   // pasta.get().then((querySnapshot) => {
@@ -128,50 +136,75 @@ function setup() {
 
 
 
-  db.collection("pasta").orderBy('score').onSnapshot(snapshot => {
-
+  db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
+      let i=0;
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-          console.log(change.doc.data());
+          //console.log(change.doc.data());
           if(change.type == 'added'){
+            lol= document.getElementById('pasta-li-'+i);
+            lol.innerHTML=change.doc.data().name+": "+change.doc.data().score;
             pastaList = document.getElementById('pasta-list');
             li = document.createElement('li');
             namerank  = document.createElement('span');
             scorerank = document.createElement('span');
-            showrank(change.doc);
+            i++
+            // showrank(change.doc);
           }
       });
   });
-}
 
+
+}
+let refresh=true;
 
 function draw() {
-  console.log('timer server: ' +timer)
-  clear()
-  pastadb.sort(function(c, d) {
-    return d.score - c.score;
-  });
 
-  if (phase == 0) {
-
-    punteggio1 = 0;
-    punteggio2 = 0;
-    setTimeout(assegna, 250)
-    // console.log('statotenda: ' + statotenda)
-
-    if(!statotenda){
-    Tenda()
-    statotenda = true
+  if(timer==18){
+    refresh=false;
   }
 
+  if(timer==19 && !refresh){
+    setTimeout(function(){
+      window.open("./index.html","_self");
+      let refresh=true;
+    },800)
+  }
+  //console.log('stato tenda: ' +statotenda)
+  clear()
+  // pastadb.sort(function(c, d) {
+  //   return c.score - d.score;
+  // });
+
+  if (phase == 0) {
+    for (var i = 0; i < boxes.length; i++) {
+      boxes.splice(i,1);
+    }
+    punteggio1 = 0;
+    punteggio2 = 0;
+    setTimeout(assegna, 750)
+    // background('white')
+    // fill("black")
+    // textAlign(CENTER);
+    // textSize(150);
+    // text("Sala di attesa", windowWidth / 2, windowHeight / 4);
+    // textSize(50);
+    // text("Mancano " + (4 - timer) + " secondi all'inizio del Poll", windowWidth / 2, windowHeight / 2);
+
+    if(!statotenda){
+    console.log("chiamotenda")
+     Tenda()
+    statotenda = true}
   }
 
 
   // POLL
 
   if (phase == 1) {
-    statotenda = true
+    setInterval(assegna,1000);
+    statotenda = false
     clear()
+
     Engine.update(engine);
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
@@ -208,10 +241,7 @@ function draw() {
   }
 
   if (phase == 2) {
-
     ric = false;
-    if(timer > 24){
-    statotenda = false;}
     push()
     rectMode(CENTER)
     strokeWeight(5)
@@ -226,7 +256,7 @@ function draw() {
     fill(0)
     text(winner + ' won this game', windowWidth / 2, windowHeight / 2)
     pop()
-
+    statotenda = false
 
   }
 
@@ -257,11 +287,12 @@ function updatescore2(data1) {
 
 
 function mouseClicked() {
+
   if (mouseX < windowWidth / 2) {
     punteggio1++
     boxes.push(new Box1(mouseX, mouseY, 60,17));
     socket.emit("mousesx");
-    db.collection('pasta').doc(vs1.toString()).update({
+    db.collection('Pasta').doc(vs1.toString()).update({
       score: increment
     })
   }
@@ -270,27 +301,52 @@ function mouseClicked() {
     punteggio2++
     boxes.push(new Box(mouseX, mouseY,60,17));
     socket.emit("mousedx");
-    db.collection('pasta').doc(vs2.toString()).update({
+    db.collection('Pasta').doc(vs2.toString()).update({
       score: increment
     })
   }
+updateRank()
+assegna();
+}
 
+function updateRank(){
+  //let scorelistings = getElementsByTagName("li")
+  // for(var i=0; i<scorelistings.length;i++){
+  //   scorelistings[i].remove
+  // }
+
+  db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
+let i=0;
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+          //console.log(change.doc.data());
+          if(change.type == 'added'){
+            lol= document.getElementById('pasta-li-'+i);
+            lol.innerHTML=change.doc.data().name+": "+change.doc.data().score;
+            pastaList = document.getElementById('pasta-list');
+            li = document.createElement('li');
+            namerank  = document.createElement('span');
+            scorerank = document.createElement('span');
+            i++
+            // showrank(change.doc);
+          }
+      });
+  });
 
 }
 
-
-
 function showrank(doc) {
-
-  namerank.innerHTML = doc.data().name;
-  scorerank.innerHTML = doc.data().score;
-
-   li.appendChild(namerank);
-   li.appendChild(scorerank);
-
-   pastaList.appendChild(li);
-
-
+// lol= document.getElementById('pasta-li-'+i);
+// lol.innerHTML=5;
+//   namerank.innerHTML = doc.data().name;
+//   scorerank.innerHTML = doc.data().score;
+//
+//    li.appendChild(namerank);
+//    li.appendChild(scorerank);
+//    li.class='scorelisting'
+//    pastaList.appendChild(li);
+//
+//
 
   //
   //

@@ -1,8 +1,9 @@
 //funzione tovaglia, F() è la funzione che la fa cadere. all'interno c'è il timer che la fa cadere dopo 5 secondi.
 
-function Tenda() {
-  let qgotten = false;
 
+
+function Tenda(data) {
+  let qgotten = false;
   console.log('tenda timer: ' + timer)
 
   function m() {
@@ -21,6 +22,13 @@ function Tenda() {
     this.tmp = new THREE.Vector3;
     this.tmp2 = new THREE.Vector3
   }
+
+
+
+
+  // if ($('#timer').html() == 0) {
+  //   F()
+  // }
 
 
   function A() {
@@ -108,7 +116,6 @@ function Tenda() {
   }
 
   function t() {
-
     requestAnimationFrame(t);
     var a = Date.now();
     z && H.set(-1, 1, Math.sin(a / 2E3)).normalize().multiplyScalar(E);
@@ -159,10 +166,6 @@ function Tenda() {
       k.render(p, n)
     }
   }
-
-
-
-
   var b = Math.ceil(window.innerWidth / 100),
     g = Math.ceil(window.innerHeight / 100),
     v = window.innerWidth / window.innerHeight;
@@ -246,28 +249,30 @@ function Tenda() {
     this.a.set(0, 0, 0)
   }
 
-
   function F() {
+
     if (qgotten)
     0 < q.length ? (q = y[0], document.body.classList.add("dropped")) :
-    (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
+      (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
   }
 
   function startTimer() {
-      if (timer == 5 ) {
+    if(timer==0){
       F()
-      document.getElementById("timer").style.display = 'none';
-      document.getElementById('stop').style.display = 'none';
-      document.getElementById('canvacontainer').style.display = 'none';
-      }
-      if(timer == 0){
-        F()
-      }
-  }
- //
- // display = document.querySelector('#timer');
- setInterval(startTimer,200)
+    }
 
+      if (timer == 5) {
+      // document.getElementById("timer").style.display = 'none';
+      // document.getElementById('stop').style.display = 'none';
+      // document.getElementById('canvacontainer').style.display = 'none';
+      F()
+      }
+
+
+  }
+
+    display = document.querySelector('#timer');
+   setInterval(startTimer, 1000)
 
 
 };
