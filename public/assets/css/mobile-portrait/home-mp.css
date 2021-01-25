@@ -23,6 +23,10 @@ body {
   400	{display: block}
   }
 
+
+#animated-background {width: 100vw; z-index: -50; position: fixed; left: 0; bottom: -35vh}
+
+
 #page-content {
   position: fixed;
   width: 100%;

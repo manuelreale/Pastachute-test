@@ -4,9 +4,7 @@ let timer=0;
 
 var waitingRoomContainer;
 var ready = false;
-// let pastaimgs = [];
 var pasta = [];
-// var i;
 var score = 0;
 
 
@@ -69,7 +67,6 @@ function setup() {
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
   db.settings({ timestampsInSnapshots: true });
-  // pasta = db.collection("Pasta");
 
   db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
       let i=0;
@@ -100,10 +97,13 @@ select("#waiting-room-timer").html(0);
 // THE USER IS READY TO PLAY
 select("#play-btn").mouseClicked(function () {
   ready = true;
+
 })
 
 select("#skip-btn").mouseClicked(function () {
   ready = true;
+  select("#title").removeAttribute("style")
+  select("#animated-background").hide()
 })
 
 if (ready==true) {

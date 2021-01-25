@@ -10,10 +10,13 @@
 -skrollr-animation-name:resizeTitle;
 }
 
+
+
 @-skrollr-keyframes resizeTitle {
 0  {margin-top: 30vh; font-size: 8vw }
 200	{margin-top: 0vh; font-size: 7vw }
 }
+
 
 #about-btn, #ranking-btn {
   -skrollr-animation-name: displayMenu;
@@ -23,6 +26,8 @@
   0  {display: none}
   200	{display: block}
   }
+
+  #animated-background {width: 54vw; z-index: -50; position: fixed; left: 22vw; bottom: 0}
 
 
 #home-text-content {

@@ -19,11 +19,11 @@ io.on('connection', newConnection);
 let phase = 0;
 let timer = 0;
 
-let vs1 = Math.floor(Math.random() * 24)
-let vs2 = Math.floor(Math.random() * 24)
+let vs1 = Math.floor(Math.random() * 25)
+let vs2 = Math.floor(Math.random() * 25)
 
 while(vs2 == vs1){
-vs2 =  Math.floor(Math.random() * 24)
+vs2 =  Math.floor(Math.random() * 25)
 }
 
 let punteggio1 = 0;
@@ -44,7 +44,7 @@ function newConnection(socket){
     socket.emit("lastwinner", lastwinner)
   }
 
-socket.on('mouse', mouseMessage);
+// socket.on('mouse', mouseMessage);
 socket.on("mousedx", mouseMessagedx);
 socket.on("mousesx", mouseMessagesx);
 
@@ -59,10 +59,10 @@ socket.on("mousesx", mouseMessagesx);
  }
 
 
- function mouseMessage(dataReceived){
-  console.log(socket.client.id, dataReceived);
-  socket.broadcast.emit("mouseBroadcast", dataReceived);
- }
+ // function mouseMessage(dataReceived){
+ //  console.log(socket.client.id, dataReceived);
+ //  socket.broadcast.emit("mouseBroadcast", dataReceived);
+ // }
 
  socket.on('disconnect', function() {
 usercount--
@@ -82,9 +82,9 @@ setInterval(function(){
 
 
 function getRandomNumber() {
-  var number = Math.floor(Math.random() * 24)
+  var number = Math.floor(Math.random() * 25)
   while(number == vs1 || number == vs2){
-  number = Math.floor(Math.random() * 24);}
+  number = Math.floor(Math.random() * 25);}
 
   if(punteggio1 > punteggio2){
   lastwinner = vs1

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <!-- Computer stylesheet -->
+      <link rel='stylesheet' type='text/css' href='assets/css/exit.css' media="screen and (min-width:992px)"  >
+            <link rel='stylesheet' type='text/css' href='assets/css/common.css' media="screen and (min-width:992px)"  >
+            <!-- Mobile portrait mode -->
+      <link rel='stylesheet' type='text/css' href='assets/css/mobile-portrait/exit-mp.css' media="screen and (orientation:portrait) and (max-width:991px)" >
+      <link rel='stylesheet' type='text/css' href='assets/css/mobile-portrait/common-mp.css' media="screen and (orientation:portrait) and (max-width:991px)" >
+<!-- Mobile landscape mode -->
+      <link rel='stylesheet' type='text/css' href='assets/css/mobile-landscape/exit-ml.css' media="screen and (orientation:landscape) and (max-width:991px)">
+    <link rel='stylesheet' type='text/css' href='assets/css/mobile-landscape/common-ml.css' media="screen and (orientation:landscape) and (max-width:991px)">
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="assets/js/p5.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://use.typekit.net/ttj2hjf.css">
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="assets/js/overlay-animation.js"></script>
+  <script src="assets/js/exit.js"></script>
+
+
+
+
+  <script>
+    function switchText() {
+
+      var trivia = [
+      //1
+'Did you know that the invention of pasta dates way back, even before the ancient Romans? We have proof that the Etruscan ate a dish that is the ancestor of today’s lasagna (lagana) indeed the tools to prepare the sheets of pasta were found inside their tombs.',
+//2
+'The first instance of “pastasciutta” dates back to the XII century, in Sicily, during the Arabian domination. In the region of Trabia so much pasta was produced that it was exported to Calabria and “to many other Muslim and Christian lands”.',
+//3
+'Pastasciutta was typical of the southern regions of Italy, and liguria, where the air is dried and the pasta can naturally air dry outdoors. While in the northern regions, where the weather is more humid, pasta was made with eggs and had often a filling (like cappelletti or ravioli).',
+//4
+'Pasta became a food for the masses only starting from the XVII century, following the great famine in the Kingdom of Naples. People couldn’t buy bread, let alone meat, so they began consuming pasta, which had become more affordable thanks to the inventions of the die machine and the press. ',
+//5
+'The taste for pasta “al dente” was developed in the XVII century, while before that pasta was often overcooked, softer and more difficult to digest.',
+//6
+'Already in the XVIII century, the neapolitans gained the nickname of “mangiamacheroni” which was only used for the Sicilians up until then. Pasta became a national symbol in italy. Italian playwright Carlo Goldoni when he was in Paris heard people say: “you want to feed soup to an italian? Italians eat nothing but maccheroni, maccheroni, maccheroni”.',
+//7
+'It was in the XVII century that pasta became associated with the famous tomato sauce, in the Kingdom of Naples. Tomato had been brought back to Europe from the “new world” and was already renowned and appreciated in many preparations.',
+//8
+'The noun pasta comes from the late latin (păsta) and from the greek (πάστη - paste) and it means flour mixed with water and salt. The word maccheroni, instead, comes from the etruscan word “makària” or “makarṓnia”, which means blessed food, it was offered during funerary cerimonies.',
+      ]
+
+      var randomNumber = Math.floor(Math.random() * 8); //creates random No. from 1 - 3
+      console.log(randomNumber)
+      document.getElementById("randomTrivia").innerHTML = trivia[randomNumber];
+    }
+  </script>
+</head>
+
+<body onload='switchText()'>
+
+  <div id="header">
+<span onclick='openAbout()'class='header-btn' id='about-btn'> About</span>
+<span onclick='openRan()'class='header-btn' id='ranking-btn'>Ranking</span>
+<div id='title'>PASTA CHUTE</div>
+</div>
+
+
+
+<div id="about-overlay" class="overlay">
+
+<!-- Button to close the overlay-->
+<a  class="closebtn" onclick="closeAbout()"><img class='close-img'src='assets/img/clsbtn.png'></a>
+
+<!-- Overlay content -->
+<div class="overlay-content">
+<p id='about-header' class="overlay-header">About</p>
+<p id='about-text'>"Pasta Chute" is a virtual common space developed for the course of <a href="https://drawwithcode.github.io/">Creative Coding</a> at Politecnico di Milano. Pasta is good, but which is the best? Our team wants to investigate the most controversial subject in our country. </p>
+<img onclick='showCredits()' id='troppo-italiano' src='assets/img/troppo-italiano.png' >
+<div id='credits'>
+<div id="team" class="credits-paragraph">Team: <a href="mailto:martinabracchi.mb@gmail.com">Martina Bracchi</a> - <a href="mailto:silcasavola@gmail.com">Silvia Casavola</a> - <a href="mailto:dario.faudella@gmail.com">Dario Faudella</a> - <a href="mailto:manuel.reale2000@gmail.com">Manuel Reale</a> - <a href="mailto:donren.99@gmail.com">Donato Renzulli</a></div><br>
+<div id="faculty" class="credits-paragraph">Faculty: Michele Mauri - Andrea Benedetti - Tommaso Elli</div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!--RANKING -->
+
+<div id="ranking-overlay" class="overlay">
+<div class="overlay-content">
+<a  class="closebtn" onclick="closeRan()"><img class='close-img' src='assets/img/clsbtn.png'></a>
+<p id='ranking-header'  class="overlay-header">Ranking</p>
+<div id='table-div'>
+  <table id='tabella'>
+    <tr><td class="ranking-order">#1</td>  <td class="ranking-name" id='pasta-td-0' ></td><td  class="ranking-score" id='score-td-0'></tr>
+    <tr> <td class="ranking-order">#2</td> <td class="ranking-name" id='pasta-td-1'></td><td  class="ranking-score" id='score-td-1'></tr>
+    <tr> <td class="ranking-order">#3</td> <td class="ranking-name" id='pasta-td-2'></td><td  class="ranking-score" id='score-td-2'></tr>
+    <tr> <td class="ranking-order">#4</td> <td class="ranking-name" id='pasta-td-3'></td><td  class="ranking-score" id='score-td-3'></tr>
+    <tr> <td class="ranking-order">#5</td> <td class="ranking-name" id='pasta-td-4'></td><td  class="ranking-score" id='score-td-4'></tr>
+    <tr> <td class="ranking-order">#6</td> <td class="ranking-name" id='pasta-td-5'></td><td class="ranking-score"  id='score-td-5'></tr>
+    <tr> <td class="ranking-order">#7</td> <td class="ranking-name" id='pasta-td-6'></td><td  class="ranking-score" id='score-td-6'></tr>
+    <tr> <td class="ranking-order">#8</td> <td class="ranking-name" id='pasta-td-7'></td><td  class="ranking-score" id='score-td-7'></tr>
+    <tr> <td class="ranking-order">#9</td> <td class="ranking-name" id='pasta-td-8'></td><td  class="ranking-score" id='score-td-8'></tr>
+    <tr> <td class="ranking-order">#10</td> <td class="ranking-name" id='pasta-td-9'></td><td  class="ranking-score" id='score-td-9'></tr>
+    <tr> <td class="ranking-order">#11</td> <td class="ranking-name" id='pasta-td-10'></td><td  class="ranking-score" id='score-td-10'></tr>
+    <tr> <td class="ranking-order">#12</td> <td class="ranking-name" id='pasta-td-11'></td><td  class="ranking-score" id='score-td-11'></tr>
+    <tr> <td class="ranking-order">#13</td> <td class="ranking-name" id='pasta-td-12'></td><td class="ranking-score"  id='score-td-12'></tr>
+    <tr> <td class="ranking-order">#14</td> <td class="ranking-name" id='pasta-td-13'></td><td  class="ranking-score" id='score-td-13'></tr>
+    <tr> <td class="ranking-order">#15</td> <td class="ranking-name" id='pasta-td-14'></td><td  class="ranking-score" id='score-td-14'></tr>
+    <tr> <td class="ranking-order">#16</td> <td class="ranking-name" id='pasta-td-15'></td><td  class="ranking-score" id='score-td-15'></tr>
+    <tr> <td class="ranking-order">#17</td> <td class="ranking-name" id='pasta-td-16'></td><td  class="ranking-score" id='score-td-16'></tr>
+    <tr> <td class="ranking-order">#18</td> <td class="ranking-name" id='pasta-td-17'></td><td  class="ranking-score" id='score-td-17'></tr>
+    <tr> <td class="ranking-order">#19</td> <td class="ranking-name" id='pasta-td-18'></td><td class="ranking-score"  id='score-td-18'></tr>
+    <tr> <td class="ranking-order">#20</td> <td class="ranking-name" id='pasta-td-19'></td><td  class="ranking-score" id='score-td-19'></tr>
+    <tr> <td class="ranking-order">#21</td> <td class="ranking-name" id='pasta-td-20'></td><td  class="ranking-score" id='score-td-20'></tr>
+    <tr> <td class="ranking-order">#22</td> <td class="ranking-name" id='pasta-td-21'></td><td  class="ranking-score" id='score-td-21'></tr>
+    <tr> <td class="ranking-order">#23</td> <td class="ranking-name" id='pasta-td-22'></td><td class="ranking-score"  id='score-td-22'></tr>
+    <tr> <td class="ranking-order">#24</td> <td class="ranking-name" id='pasta-td-23'></td><td  class="ranking-score" id='score-td-23'></tr>
+    <tr> <td class="ranking-order">#25</td> <td class="ranking-name" id='pasta-td-24'></td><td  class="ranking-score" id='score-td-24'></tr>
+    </table>
+</div>
+</div>
+
+</div>
+
+
+  <div id='div-header-final'>
+  <p id='header-final'>Thank you and arrivederci!</p>
+  <button id='back' type="button" onclick="window.location.href='index.html'">Start again</button>
+  </div>
+
+
+
+<div id="div-trivia">
+    <p id='title-trivia'>DID YOU KNOW?</p>
+<p id= 'randomTrivia'></p>
+</div>
+<div id='div-info'><p id='info'>*YOUR CONTRIBUTION WAS FUNDAMENTAL FOR THE RAISE OF INTERNATIONAL AWARENESS ABOUT PASTA. SEND THIS LINK TO YOUR FRIENDS AND FAMILY SO WE CAN ALL PLAY OUR PART IN THIS CAUSE.</p></div>
+
+
+<div id='div-aiapl'>
+  <img id='aiapl'src="assets/img/aiapl.gif" alt="AIAPL" title="AIAPL"/>
+</div>
+<img  id='dente' src='assets/img/dente.png' alt='Al dente' title='Al dente'/>
+<img  id='pin' src='assets/img/pin.png' alt='Mattarello' title='Mattarello'/>
+
+
+
+  <marquee class="marquee" width="100%" behavior="scroll">
+    <p id="text-marquee">PASTA CHUTE  ----  2020  ----  CTRL+G</p>
+  </marquee>
+
+      </body>
+
+      </html>

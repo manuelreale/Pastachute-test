@@ -1,7 +1,7 @@
 
 function Tenda(data) {
   let qgotten = false;
-  console.log('tenda timer: ' + timer)
+
 
   function m() {
     disasterVideo.init();
@@ -19,13 +19,6 @@ function Tenda(data) {
     this.tmp = new THREE.Vector3;
     this.tmp2 = new THREE.Vector3
   }
-
-
-
-
-  // if ($('#timer').html() == 0) {
-  //   F()
-  // }
 
 
   function A() {
@@ -72,7 +65,7 @@ function Tenda(data) {
       var G = 2;
       c = 1 * b
     } else h = c[0], f = 2, G = 1, c = 1.2 * g;
-    a = a.load("assets/" + h);
+    a = a.load("assets/img/" + h);
     a.anisotropy = 16;
     a.repeat.set(f * b / c, G * g / c);
     a.offset.set(.5 * -(f * b / c) + .5, .5 * -(G * g / c) + .5);

@@ -78,9 +78,8 @@ canvas {
 #divtimer {
   z-index: var(--timer-layer);
   width: 100%;
-  height: 50%;
+  top : 35%;
   position: absolute;
-  top: 0;
   text-align: center;
 }
 

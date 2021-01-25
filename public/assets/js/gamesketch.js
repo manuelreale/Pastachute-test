@@ -21,6 +21,8 @@ let scorerank;
 let statotenda = true;
 let users;
 let lastwinner;
+let neue;
+let baskerville;
 
 
 let pastaimg = [];
@@ -58,7 +60,7 @@ socket.on("usercount", usercount)
 socket.on("lastwinner", getlastwinner)
 socket.on("scoreBroadcast1", updatescore1);
 socket.on("scoreBroadcast2", updatescore2);
-socket.on('mouseBroadcast', drawOtherMouse);
+// socket.on('mouseBroadcast', drawOtherMouse);
 
 
 function phase0() {
@@ -79,7 +81,7 @@ function getTimer(data) {
 
 function usercount(data){
   users = data
-  console.log('utenti: ' +users)
+  // console.log('utenti: ' +users)
 }
 
 function getlastwinner(data){
@@ -92,8 +94,10 @@ function getlastwinner(data){
 
 function preload() {
 for (var m=0; m<=24; m++) {pastaimg[m] = loadImage("./assets/pasta/Risorsa " + m + ".png");}
-bf = loadImage('assets/blackfork.png');
-wf = loadImage('assets/whitefork.png');
+bf = loadImage('assets/img/blackfork.png');
+wf = loadImage('assets/img/whitefork.png');
+baskerville = loadFont('assets/font/BaskervilleItalicBT.ttf');
+neue = loadFont('assets/font/NeueHaasGrotesque.ttf');
 }
 
 
@@ -121,7 +125,7 @@ function setup() {
   var options = {
     isStatic: true
   };
-  ground = Bodies.rectangle(0, height - windowHeight/35 , windowWidth*10 , 100, options);
+  ground = Bodies.rectangle(0, windowHeight - 35 , windowWidth*10 , 100, options);
   World.add(world, ground);
 
   var firebaseConfig = {
@@ -143,9 +147,9 @@ function setup() {
       let i=0;
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-          //console.log(change.doc.data());
+
       if(change.type == 'added'){
-      console.log('snapshot')
+      // console.log('snapshot')
       namerank = document.getElementById('pasta-td-'+i);
       namerank.innerHTML=change.doc.data().name
       scorerank = document.getElementById('score-td-'+i);
@@ -161,15 +165,15 @@ function setup() {
 let refresh=true;
 
 
-function drawOtherMouse(data){
-
-imageMode(CENTER);
-if(windowWidth<990){
-let altrimouse = image(bf, data.x * width, data.y *height, windowWidth/4,windowWidth/4);
-}else{
-altrimouse = image(bf, data.x * width, data.y * height, windowWidth/10,windowWidth/10);
-}
-}
+// function drawOtherMouse(data){
+//
+// imageMode(CENTER);
+// if(windowWidth<990){
+// let altrimouse = image(bf, data.x * width, data.y *height, windowWidth/4,windowWidth/4);
+// }else{
+// altrimouse = image(bf, data.x * width, data.y * height, windowWidth/10,windowWidth/10);
+// }
+// }
 
 
 
@@ -177,7 +181,7 @@ function draw() {
   let countdown = document.getElementById('timer');
   let exit = document.getElementById('divstop');
   let utenti = document.getElementById('text-marquee');
-  console.log('statotenda: '+ statotenda)
+  // console.log('statotenda: '+ statotenda)
   utenti.innerHTML= "PASTA CHUTE // PASTA CHUTE // PASTA CHUTE " + "  --- USERS ONLINE: " + users + " ---  LIVE NOW:  " + nomi[vs1] + "  vs  " + nomi[vs2] + "  --- LAST WINNER:  " + nomi[lastwinner] + " --- PASTA CHUTE // PASTA CHUTE // PASTA CHUTE "
 
   clear()
@@ -197,9 +201,8 @@ function draw() {
 
     punteggio1 = 0;
     punteggio2 = 0;
-    // setTimeout(assegna, 750)
     if(!statotenda){
-    console.log("chiamotenda")
+    // console.log("chiamotenda")
     Tenda()
     statotenda = true}
 
@@ -239,18 +242,25 @@ socket.emit("mouse", message)
       } else {
         winner = nomi[vs2];
       }
-
-      textSize(150)
-      text(26 - timer, windowWidth / 2, 200)
-      textSize(50)
-      text(nomi[vs1] + ': ' + punteggio1, windowWidth / 8 * 2, 50)
-      text('Totale: ' + (a + punteggio1), windowWidth / 8 * 2, 100)
-
-      text(nomi[vs2] + ': ' + punteggio2, windowWidth / 8 * 6, 50)
-      text('Totale: ' + (b + punteggio2), windowWidth / 8 * 6, 100)
+      textAlign(CENTER)
+      textFont(neue)
+      textSize(72)
+      text(26 - timer, windowWidth / 2, windowHeight/2 )
+      textFont(baskerville)
+      textAlign(RIGHT)
+      textSize(36)
+      text(nomi[vs1] + ': ' + punteggio1, windowWidth /2 -175,  windowHeight/4)
+      textSize(18)
+      text('Total: ' + (a + punteggio1), windowWidth / 2-175, windowHeight/4 + 35)
+      textAlign(LEFT)
+      textSize(36)
+      text(nomi[vs2] + ': ' + punteggio2, windowWidth / 2+175, windowHeight/4)
+      textSize(18)
+      text('Total: ' + (b + punteggio2), windowWidth / 2+175, windowHeight/4+35)
 
       textAlign(CENTER)
-      text(winner + ' is winning', windowWidth / 2, 300)
+      textSize(18)
+      text(winner + ' is winning', windowWidth / 2, windowHeight/2+35)
     }
   }
 
@@ -259,16 +269,19 @@ socket.emit("mouse", message)
     exit.style.display = 'none'
     ric = false;
     push()
+    textFont(baskerville)
     rectMode(CENTER)
-    strokeWeight(5)
+    strokeWeight(2)
     textAlign(CENTER)
     textSize(50)
+
     fill(255)
-    stroke('red')
+    fill('red')
     rect(windowWidth / 2 + 20, windowHeight / 2 + 20, windowWidth / 7 * 5, windowHeight / 3)
+    fill(255)
     stroke(0)
     rect(windowWidth / 2, windowHeight / 2, windowWidth / 7 * 5, windowHeight / 3)
-    strokeWeight(0)
+    noStroke()
     fill(0)
     text(nomi[lastwinner] + ' won this game', windowWidth / 2, windowHeight / 2)
     pop()
@@ -334,8 +347,6 @@ let i=0;
             namerank.innerHTML=change.doc.data().name
             scorerank = document.getElementById('score-td-'+i);
             scorerank.innerHTML=change.doc.data().score
-
-            // pastaList = document.getElementById('pasta-list');
             i++
           }
       });

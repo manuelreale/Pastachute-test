@@ -27,11 +27,8 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="assets/js/overlay-animation.js"></script>
 
-    <!-- SE IL GIOCO DELLA WAITING ROOM SI FA FUNZIONARE: -->
-    <script src="assets/js/home.js"></script>
 
-    <!-- ALTRIMENTI QUESTO FA APPARIRE SOLO L'OVERLAY -->
-    <!-- <script src="assets/js/waiting-room/open-waiting-room.js"></script> -->
+    <script src="assets/js/home.js"></script>
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   </head>
@@ -41,12 +38,12 @@
 <div id="header">
 <span onclick='openAbout()'class='header-btn' id='about-btn'> About</span>
 <span onclick='openRan()'class='header-btn' id='ranking-btn'>Ranking</span>
-<div id='title'>PASTA CHUTE</div>
+<div  id='title'>PASTA CHUTE</div>
 </div>
 
 
 <!-- ANIMATED BACKGROUND -->
-<!-- <div id="animated-background" style="width: 100vw; height: 200vh; z-index: -50; position: absolute; top: 0; left: 0"></div> -->
+<image id="animated-background" src="assets/img/homepage-animation.png"></image>
 
 
 <!-- TEXT CONTENT -->
@@ -66,7 +63,7 @@
 <img id='scroll' src='assets/img/freccia.png'>
 
 <!-- SKIP BTN -->
-<a id="skip-btn">Skip</a>
+<a id="skip-btn" >Skip</a>
 
 <!-- PLAY BUTTON -->
 <button id="play-btn">YES</button>
@@ -185,5 +182,29 @@
     smoothScrolling=true
   );
 	</script>
+
+  <script>
+  let scroll = false;
+
+  $(window).scroll( function(){
+  if (scroll === false) {
+  $("#animated-background").attr("src","assets/img/homepage-animation.gif");
+}
+  scroll = true;
+})
+
+  let scrollMobile = false;
+
+if (window.innerWidth < 992 && window.innerWidth < window.innerHeight) {
+  $("#animated-background").attr("src","assets/img/homepage-animation-mp.png");
+
+$(window).scroll( function() {
+if (scrollMobile === false) {
+$("#animated-background").attr("src","assets/img/homepage-animation-mp.gif");
+}
+scrollMobile = true;
+})
+}
+</script>
 </body>
 </html>

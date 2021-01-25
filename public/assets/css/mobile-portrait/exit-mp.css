@@ -1,0 +1,129 @@
+
+  #header-final{
+font-family: baskerville-urw;
+font-style: italic;
+font-weight: 400;
+color: black;
+font-size: 7vw;
+position: relative;
+margin: 0%;
+
+}
+
+#div-header-final{
+  width:100%;
+  text-align: center;
+  position: absolute;
+  bottom:17%;
+}
+
+
+
+#title-trivia{
+  font-family: neue-haas-grotesk-display;
+  font-size: 4vw;
+  font-weight: 400;
+  margin-left:var(--mobile-margin);
+  text-align: left;
+  position: relative;
+}
+
+
+
+#div-trivia{
+  width:100%;
+  position: absolute;
+vertical-align: bottom;
+top: 8%;
+
+}
+#randomTrivia{
+  font-family: neue-haas-grotesk-display;
+  font-size: 3vw;
+  font-weight: 400;
+margin-bottom: 0%;
+margin-left: var(--mobile-margin);
+margin-right:var(--mobile-margin);
+position:relative;
+}
+
+#dente{
+  width: 45%;
+  height: auto;
+  right:0vw;
+bottom:25%;
+  position: fixed;
+  z-index: 0;
+  /* transform: rotate(50deg) */
+}
+
+
+#pin{
+  width: 45%;
+  left: var(--mobile-margin);
+  height: auto;
+  position: absolute;
+  z-index: 2;
+top: 20%;
+/* display: none; */
+
+
+
+}
+#div-aiapl{
+  width: 100%;
+  height: 100%;
+  text-align:center;
+position: fixed;
+align-items: center;
+display: flex;
+
+}
+#aiapl{
+
+  width: 55%;
+  height: auto;
+display: inline-flex;
+margin: auto;
+z-index: 2;
+transform: translateY(-10%);
+position: relative;
+}
+
+
+#div-info{
+  width:100;
+  position: absolute;
+right:var(--mobile-margin);
+bottom: 7%;
+
+}
+
+
+#info{
+  font-family: neue-haas-grotesk-display;
+  font-size: 3vw;
+  font-weight: 400;
+margin-bottom: 0%;
+position:relative;
+margin-left: var(--mobile-margin);
+margin-right: var(--mobile-margin);
+}
+
+#back{
+  font-family: neue-haas-grotesk-display;
+  font-size: 3vw;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  z-index: 5;
+  border: solid 2px black;
+  padding: 1% 2%;
+}
+
+
+#back:hover{
+font-style: italic;
+color: red;
+}
