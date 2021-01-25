@@ -49,8 +49,6 @@ The purpose of this section is to entertain the user until the start of a new ma
 The poll works in a very simple way. The screen is split in two halves; each side houses each round a different type of pasta. The user needs to place their mouse (or their finger) on the side they want to vote for, and click (or tap) as many times as possible to make it win. Each click generates a piece of the chosen pasta in that position of the screen, this then falls on the ground and piling up on the others, thanks to the mechanics of [matter.js](https://brm.io/matter-js/). This visual representation makes it very easy to understand what pasta is winning and the contribution of the other users, who are generating pasta on the other side of the screen.<br>
 Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.
 
-![poll](links/poll3.gif)
-
 #### Waiting room
 The waiting room is a 5-second-long transitional phase between a match and another.<br>
 A truly Italian-stereotype-style red checkered tablecloth flutters on the screen and falls at the end of the timer, uncovering the actual poll. During this phase, online users can see each other's cursors, in the form of forks, and therefore understand how many players are online with them at that moment.<br>
@@ -70,12 +68,10 @@ It contains information about the project and the elective course. A click on th
 The section "Ranking" is a hidden overlay that slides over the screen from the right, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
 It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.
 
-![poll](links/poll2.gif)
+![poll](links/ranking.gif)
 
 #### Thank you page
 This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.
-
-![poll](links/exit.gif)
 
 ## The Code
 The app was built mostly in [p5.js](https://p5js.org/). The library [matter.js](https://brm.io/matter-js/) was used to render the mechanics of the pieces of pasta falling from above.
