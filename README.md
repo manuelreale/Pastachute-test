@@ -3,7 +3,7 @@
 ## About
 "Pasta Chute" is a virtual common space built on [p5.js](https://p5js.org) that aims to connect people thanks to a topic of general interest: pasta.
 The app is playable at: https://pastachute.herokuapp.com/<br>
-"Past Chute" was developed as a part of the [Creative Coding](https://drawwithcode.github.io/) course at Politecnico di Milano.<br>
+"Pasta Chute" was developed as a part of the [Creative Coding](https://drawwithcode.github.io/) course at Politecnico di Milano.<br>
 <br>Faculty: Michele Mauri, Tommaso Elli, Andrea Benedetti
 
 ## Table of Contents
