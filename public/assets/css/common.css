@@ -4,6 +4,7 @@
   --waiting-room-layer: 100;
   --header-layer: 800;
   --overlay-layer: 850;
+  --marquee-layer: 820;
 
 /* MARGINS */
   --margin:2vw;
@@ -31,7 +32,7 @@ body::-webkit-scrollbar {
 #header {  z-index: var(--header-layer)  }
 
 marquee{
-  z-index: 1000;
+  z-index: var(--marquee-layer)
 }
 
 
