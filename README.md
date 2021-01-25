@@ -51,29 +51,34 @@ The purpose of this section is to entertain the user until the start of a new ma
 <br>
 #### Poll
 The poll works in a very simple way. The screen is split in two halves; each side houses each round a different type of pasta. The user needs to place their mouse (or their finger) on the side they want to vote for, and click (or tap) as many times as possible to make it win. Each click generates a piece of the chosen pasta in that position of the screen, this then falls on the ground and piles up on the others, thanks to the mechanics of [matter.js](https://brm.io/matter-js/). This visual representation makes it very easy to understand what pasta is winning and the contribution of the other users, who are generating pasta on the other side of the screen.<br>
-Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.
-
+Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.<br>
+<br>
+![waitingroom](links/poll.gif)
+<br>
+<br>
 #### Waiting room
 The waiting room is a 5-second-long transitional phase between a match and another.<br>
 A truly Italian-stereotype-style red checkered tablecloth flutters on the screen and falls at the end of the timer, uncovering the actual poll. During this phase, online users can see each other's cursors, in the form of forks, and therefore understand how many players are online with them at that moment.<br>
 If one is tired to play, there is a button that leads to the ["Thank you" page](#thank-you-page).<br>
-The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).
-
-![waitingroom](links/poll.gif)
-
-
+The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).<br>
+<br>
+![waitingroom](links/tablecoth.gif)
+<br>
+<br>
 #### About
 The section "About" is a hidden overlay that slides over the screen from the left, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
-It contains information about the project and the elective course. A click on the symbol of the typical Italian hand gesture "mano a borsa" displays the names of the team members and of the professors.
-
+It contains information about the project and the elective course. A click on the symbol of the typical Italian hand gesture "mano a borsa" displays the names of the team members and of the professors.<br>
+<br>
 ![about](links/about.gif)
-
+<br>
+<br>
 #### Ranking
 The section "Ranking" is a hidden overlay that slides over the screen from the right, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
-It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.
-
+It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.<br>
+<br>
 ![poll](links/ranking.gif)
-
+<br>
+<br>
 #### Thank you page
 This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.
 
