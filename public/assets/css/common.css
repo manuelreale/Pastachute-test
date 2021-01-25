@@ -3,8 +3,8 @@
   --bottom-layer: 0;
   --waiting-room-layer: 100;
   --header-layer: 800;
-  --overlay-layer: 850;
-  --marquee-layer: 820;
+  --marquee-layer: 850;
+  --overlay-layer: 900;
 
 /* MARGINS */
   --margin:2vw;
