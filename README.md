@@ -80,8 +80,10 @@ It contains the global results of the game. It ranks all the types of pasta by t
 <br>
 <br>
 #### Thank you page
-This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.
-
+This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.<br>
+<br>
+![exit](links/exit.gif)
+<br>
 ## The Code
 The app was built mostly in [p5.js](https://p5js.org/). The library [matter.js](https://brm.io/matter-js/) was used to render the mechanics of the pieces of pasta falling from above.
 
