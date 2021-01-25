@@ -2,7 +2,7 @@
 
 ## About
 "Pasta Chute" is a virtual common space built on [p5.js](https://p5js.org) that aims to connect people thanks to a topic of general interest: pasta.
-The app is playable at: https://link<br>
+The app is playable at: https://pastachute.herokuapp.com/<br>
 "Past Chute" was developed as a part of the [Creative Coding](https://drawwithcode.github.io/) course at Politecnico di Milano.<br>
 <br>Faculty: Michele Mauri, Tommaso Elli, Andrea Benedetti
 
@@ -96,84 +96,91 @@ Coding-wise one of the challenges was linked to the usage of the timer function 
 Another coding issues we ran into, was linked to the pixel density of mobile screens. When the game was displayed vertically on a smartphone, p5 interpreted the canvas as made up by a very large amount of pixels vertically, and therefore the pieces of pasta looked like they were falling in slow-motion. We solved this issue by creating an if-statement that handled the physics of the pieces of pasta according to the proportions and the ratio of the screen.
 
 
+One of the first challenges we had to face in order to make a timer based match game,
+was to make a universal time agreed by every user so that every player in the game was
+synched to the same phase of the game; To achieve this we used the setInterval function
+in the server to update and then reset a timer, that would be sent to every user to sync
+them in the same phase.
 
-We used Mapbox for the main part of the WebApp. To intergrate Mapbox GL inside p5.js we used a library called [mappa.js](https://mappa.js.org), a tool that facilitates work between the canvas elements and the existing map libraries and APIs.
-We slightly changed mappa.js to add a gps button that helps the user to go back to his position:
+
 javascript
-map.addControl(
-  new mapboxgl.GeolocateControl({
-	  positionOptions: {
-		  enableHighAccuracy: true
-		},
-		trackUserLocation: true,
-		showUserLocation: false
-	})
-);
-
-The main challenge was based around having such a large number of interactions that need to be registered, remembered and broadcasted to everyone.
-We overcame this challenge by relying on a local JSON file that is updated each time a change to the present version happens, by sending signals from the client to the server and then back to all the other clients with [socket.io](https://socket.io), an engine that enables real-time, bidirectional and event-based communication.
-As an example, when someone sends a present, a JSON variable will be automatically sent to the server holding all the present information:
-javascript
-//Variable holding the new present information
-var data = {
-  x: rx,
-  y: ry,
-  q1: question1,
-  show: iconshow
-}
-
-//JSON variable holding the previous variable
-var json = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: data
-}
-
-//Emit the Present data to other Users
-socket.emit('present', json);
-
-When the server receives the signal and the gift information it starts a function to change the local JSON by adding this new information:
-javascript
-function jsonUpdate(request){
-  var testo = request.body; //assign the information of the present that a user sent to the variable testo
-  var fs = require('fs'); //Call FileSystem API to read and modify JSON file
-
-	//Read JSON file
-	fs.readFile('./public/presents.json', 'utf8', function readFileCallback(err, data) {
-    if (err) {
-      console.log(err); //If the read produces an error, log it on the console
-    } else {
-      obj = JSON.parse(data); //Convert the JSON into an object
-      obj.regali.push(testo) //Put the present information as a new entry inside the objects
-      json = JSON.stringify(obj, null, 2); //Convert the object into a string
-      fs.writeFile('./public/presents.json', json, finished); //Write new entry into JSON
-		  socket.broadcast.emit('presentBroadcast', request); //Send the update to all clients
-    }
-  });
-}
-
-And then a signal is emitted to all the clients to update the presents:
-javascript
-regalimported = []; //deletes all the previous shown presents
-database = loadJSON("../presents.json"); //Loads JSON with new information
-//Recreate all the gifts Objects on the map after some time to ensure that the JSON is loaded
-setTimeout(function() {
-  for (var t = 0; t < database.regali.length; t++) {
-    var data = {
-      x: database.regali[t].x,
-      y: database.regali[t].y,
-      q1: database.regali[t].q1,
-      show: database.regali[t].show,
-      index: t
-    }
-    regalimported[t] = new RegaloImported(data);
+  function phasef(){
+    socket.emit("timer", timer); //send timer
+    socket.emit("vs",vs1,vs2); //send opponents
+    socket.emit("phase"+phase); //send phase
   }
+
+setInterval(function(){
+  timer++; //update timer every sec
+  if (timer <= 4) {phase = 0; }
+  if (timer > 4 && timer <= 19) {phase = 1;}
+  if (timer > 19 && timer < 24) {phase = 2;}
+  if (timer > 24) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for the looser
 }, 1000);
 
-In general we used mostly p5.js to handle events but for graphics and animations we used JQuery and CSS as it's easier to use these to make more fluid and dynamic animations.
 
+We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
+We found a lot of challenges optimizing the database read process to avoid overloading it, ;
+
+
+javascript
+
+  pasta.orderBy('score','desc').onSnapshot(snapshot => {
+      let i=0;
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+          if(change.type == 'added'){
+            list= document.getElementById('pasta-li-'+i);
+            list.innerHTML=change.doc.data().name+": "+change.doc.data().score;
+            pastaList = document.getElementById('pasta-list');
+            li = document.createElement('li');
+            namerank  = document.createElement('span');
+            scorerank = document.createElement('span');
+            i++
+          }
+      });
+  });
+
+
+
+
+In the end in order to minimize the number of reading from the database, while also keeping all the data updated in realtime
+we ended up using local variables updated by the socket.io server instead of relying on reading them continously from the database.
+
+javascript
+
+socket.on("mousedx", mouseMessagedx);
+socket.on("mousesx", mouseMessagesx);
+
+ function mouseMessagedx() {
+  punteggio2++
+  socket.broadcast.emit("scoreBroadcast2", punteggio2) //send 2 pasta type
+ }
+
+ function mouseMessagesx() {
+  punteggio1++
+  socket.broadcast.emit("scoreBroadcast1", punteggio1)
+ }
+
+
+ At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
+
+
+javascript
+
+   function startTimer() {
+     if(timer==0){
+       while(p.children.length > 0){
+       p.remove(p.children[0]);
+       F()}
+     }
+
+  function F() {
+     if(qgotten){
+     0 < q.length ? (q = y[0], document.body.classList.add("dropped")) :
+     (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
+   }
+ }
 
 #### Tools
 * [p5.js](https://p5js.org/)
