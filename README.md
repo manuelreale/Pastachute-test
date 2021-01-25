@@ -97,7 +97,6 @@ Despite the overall minimalistic style choice, we wanted to include some playful
 From the perspective of HTML and CSS design, it wasn't easy to fit all of the information in as few HTML documents as possible. This required the generation and management of several hidden overlays.<br>
 It also wasn't easy to make the website responsive for viewing and interacting on mobile, considering the different interaction methods between the two types of devices and the change in proportions and screen ratios. This required the generation of many different stylesheets.
 
-<div style="text-align:center"><img src="links/mobile.gif"></div>!
 [mobile](links/mobile.gif)
 #### Coding challenges
 
