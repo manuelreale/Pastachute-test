@@ -33,7 +33,7 @@ The creative process is very similar to the one of memes, as it starts from pick
 
 #### Context of use
 The project is addressed to a broad target audience, but it's expected to spark interest mostly among young people.<br>
-The game is always ongoing and there are no special events, so that people can jump in, fool around and browse the app whenever they want. This is why it was very important for us to make the game suitable for both computers and mobile devices.<br>
+The game is always ongoing and there are no special events, so that people can jump in, fool around and browse the app whenever they want.<br>
 Friends can arrange to visit the website at the same time to play together or against each other, but one can also play alone, fooling around, asking themselves what pasta they prefer, discovering new types and formats, learning new information about pasta, and browsing the game records.
 
 
@@ -91,7 +91,7 @@ Despite the overall minimalistic style choice, we wanted to include some playful
 * the textual and graphic elements in the "Thank you" page.
 ![graphics](links/graphics.gif)
 From the perspective of HTML and CSS design, it wasn't easy to fit all of the information in as few HTML documents as possible. This required the generation and management of several hidden overlays.<br>
-It also wasn't easy to make the website responsive for viewing and interacting on mobile, considering the different interaction methods between the two types of devices and the change in proportions and screen ratios. This required the generation of many different stylesheets.
+It also wasn't easy to make the website responsive for viewing and interacting on mobile, considering the different interaction methods between the two types of devices and the change in proportions and screen ratios. This required the generation of many different stylesheets. Eventually, we decided that the game would not be responsive.
 
 ![mobile](links/mobile.gif)
 <br>
