@@ -102,7 +102,7 @@ synched to the same phase of the game; To achieve this we used the setInterval f
 in the server to update and then reset a timer, that would be sent to every user to sync
 them in the same phase.
 
-
+```
   function phasef(){
     socket.emit("timer", timer); //send timer
     socket.emit("vs",vs1,vs2); //send opponents
@@ -116,13 +116,13 @@ setInterval(function(){
   if (timer > 19 && timer < 24) {phase = 2;}
   if (timer > 24) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for the looser
 }, 1000);
-
+```
 
 We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
 We found a lot of challenges optimizing the database read process to avoid overloading it, ;
 
 
-
+```
   pasta.orderBy('score','desc').onSnapshot(snapshot => {
       let i=0;
       let changes = snapshot.docChanges();
@@ -138,14 +138,14 @@ We found a lot of challenges optimizing the database read process to avoid overl
           }
       });
   });
-
+```
 
 
 
 In the end in order to minimize the number of reading from the database, while also keeping all the data updated in realtime
 we ended up using local variables updated by the socket.io server instead of relying on reading them continously from the database.
 
-
+```
 socket.on("mousedx", mouseMessagedx);
 socket.on("mousesx", mouseMessagesx);
 
@@ -158,12 +158,12 @@ socket.on("mousesx", mouseMessagesx);
   punteggio1++
   socket.broadcast.emit("scoreBroadcast1", punteggio1)
  }
-
+```
 
  At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
 
 
-
+```
    function startTimer() {
      if(timer==0){
        while(p.children.length > 0){
@@ -177,6 +177,7 @@ socket.on("mousesx", mouseMessagesx);
      (E = 10, q = y[1], document.body.classList.remove("dropped"), z = !0, l && (l.visible = !0))
    }
  }
+```
 
 #### Tools
 * [p5.js](https://p5js.org/)
