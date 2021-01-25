@@ -99,8 +99,6 @@ It also wasn't easy to make the website responsive for viewing and interacting o
 
 Coding-wise one of the challenges was linked to the usage of the timer function and all the other functions linked to it. A variable needed to be passed from a webpage to another, and certain functions needed to be called whenever the timer reached a certain amount, like the calling of the curtain function, when a match ends and it consequent fall and deletion. We solved this specific issue by deleting the curtain scene and then re-creating it at the end of each round!<br>
 
-Another coding issues we ran into, was linked to the pixel density of mobile screens. When the game was displayed vertically on a smartphone, p5 interpreted the canvas as made up by a very large amount of pixels vertically, and therefore the pieces of pasta looked like they were falling in slow-motion. We solved this issue by creating an if-statement that handled the physics of the pieces of pasta according to the proportions and the ratio of the screen.
-
 
 One of the first challenges we had to face in order to make a timer based match game,
 was to make a universal time agreed by every user so that every player in the game was
