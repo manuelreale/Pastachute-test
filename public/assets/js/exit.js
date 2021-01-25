@@ -26,12 +26,12 @@ function setTimer(data) {timer = data;}
 
 function setup() {
   var firebaseConfig = {
-    apiKey: "AIzaSyB05fGr8baJ4MYGPS0qZDJEHw2ON4Xk6CU",
-    authDomain: "pastachutenight.firebaseapp.com",
-    projectId: "pastachutenight",
-    storageBucket: "pastachutenight.appspot.com",
-    messagingSenderId: "103964475619",
-    appId: "1:103964475619:web:f62d862db4c21d20f785d6"
+    apiKey: "AIzaSyDScoKt2ZZSpZxy7gikG5RgCUM_x837BBI",
+    authDomain: "pastachutedraw.firebaseapp.com",
+    projectId: "pastachutedraw",
+    storageBucket: "pastachutedraw.appspot.com",
+    messagingSenderId: "529526462285",
+    appId: "1:529526462285:web:9b46b9ca57c23363668904"
   };
 
   // Initialize Firebase
