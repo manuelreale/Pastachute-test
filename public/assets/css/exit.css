@@ -110,6 +110,7 @@ position:relative;
   border: solid 2px black;
   padding: 1% 2%;
   outline: none;
+  cursor: pointer;
 }
 
 

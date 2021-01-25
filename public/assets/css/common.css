@@ -31,7 +31,7 @@ body::-webkit-scrollbar {
 #header {  z-index: var(--header-layer)  }
 
 marquee{
-  z-index: 370;
+  z-index: 1000;
 }
 
 
