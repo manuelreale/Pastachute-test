@@ -103,7 +103,6 @@ in the server to update and then reset a timer, that would be sent to every user
 them in the same phase.
 
 
-javascript
   function phasef(){
     socket.emit("timer", timer); //send timer
     socket.emit("vs",vs1,vs2); //send opponents
@@ -123,7 +122,6 @@ We needed also a place to store and update the total score of each type of pasta
 We found a lot of challenges optimizing the database read process to avoid overloading it, ;
 
 
-javascript
 
   pasta.orderBy('score','desc').onSnapshot(snapshot => {
       let i=0;
@@ -147,7 +145,6 @@ javascript
 In the end in order to minimize the number of reading from the database, while also keeping all the data updated in realtime
 we ended up using local variables updated by the socket.io server instead of relying on reading them continously from the database.
 
-javascript
 
 socket.on("mousedx", mouseMessagedx);
 socket.on("mousesx", mouseMessagesx);
@@ -166,7 +163,6 @@ socket.on("mousesx", mouseMessagesx);
  At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
 
 
-javascript
 
    function startTimer() {
      if(timer==0){
