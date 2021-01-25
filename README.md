@@ -58,7 +58,7 @@ Each match last 15 seconds. The short duration makes the single contest very qui
 <br>
 #### Waiting room
 The waiting room is a 5-second-long transitional phase between a match and another.<br>
-A truly Italian-stereotype-style red checkered tablecloth flutters on the screen and falls at the end of the timer, uncovering the actual poll. During this phase, the users can see their own cursors in the form of forks.<br>
+A truly Italian-stereotype-style red checkered tablecloth flutters on the screen and falls at the end of the timer, uncovering the actual poll. During this phase, online users can see each other's cursors, in the form of forks, and therefore understand how many players are online with them at that moment.<br>
 If one is tired to play, there is a button that leads to the ["Thank you" page](#thank-you-page).<br>
 The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).<br>
 <br>
@@ -106,9 +106,6 @@ It also wasn't easy to make the website responsive for viewing and interacting o
 <br>
 #### Coding challenges
 
-Coding-wise one of the challenges was linked to the usage of the timer function and all the other functions linked to it. A variable needed to be passed from a webpage to another, and certain functions needed to be called whenever the timer reached a certain amount, like the calling of the curtain function, when a match ends and it consequent fall and deletion. We solved this specific issue by deleting the curtain scene and then re-creating it at the end of each round!<br>
-
-
 One of the first challenges we had to face in order to make a timer based match game,
 was to make a universal time agreed by every user so that every player in the game was
 synched to the same phase of the game; To achieve this we used the setInterval function
@@ -131,7 +128,7 @@ setInterval(function(){
 }, 1000);
 ```
 
-We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
+We needed also a place to store and update the total score of each type of pasta, so we used [Firestore Database](https://firebase.google.com/docs/firestore)
 We found a lot of challenges optimizing the database read process to avoid overloading it, ;
 
 
@@ -173,7 +170,7 @@ socket.on("mousesx", mouseMessagesx);
  }
 ```
 
- At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
+ At the beginning of each waiting room, to call the creation of the tablecloth in [vendor.js](https://github.com/tonistiigi/vendor.js/) we reset the 3d scene when the 'timer' variable in the server was equal to zero
 
 
 ```
@@ -195,9 +192,12 @@ socket.on("mousesx", mouseMessagesx);
 #### Tools
 * [p5.js](https://p5js.org/)
 * [matter.js](https://brm.io/matter-js/)
-* [JQuery](https://jquery.com/)
+* [Firebase](https://firebase.google.com/)
 * [skrollr.js](https://github.com/Prinzhorn/skrollr)
 * [three.js](https://threejs.org/)
+* [vendor.js](https://github.com/tonistiigi/vendor.js/)
+* [socket.io](https://socket.io/)
+* [JQuery](https://jquery.com/)
 
 ## Team
 * [Martina Bracchi](mailto:martinabracchi.mb@gmail.com)  
