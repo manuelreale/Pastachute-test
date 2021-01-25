@@ -96,9 +96,14 @@ One of the challenges that came up during the illustration process was making su
 <br>
 Despite the overall minimalistic style choice, we wanted to include some playful elements like:
 * the red news ticker-like banner. In the homepage it displays some Italian expressions about food, that were literally translated into English, mantaining a questionable syntax. In the page of the poll, it displays the number of users online and the result of the previous match.
-* the picture of the typical Italian "mano a busta", in the "About" section, that rotates and mimics the hand gesture on hover, and displays the names of the team members and of the professors on click.
-* the textual and graphic elements in the "Thank you" page.
+* the picture of the typical Italian "mano a busta", in the "About" section, that rotates and mimics the hand gesture on hover, and displays the names of the team members and of the professors on click.<br>
+<br>
+![troppo-italiano](links/mano-a-busta.gif)<br>
+<br>
+* the textual and graphic elements in the "Thank you" page.<br>
+<br>
 ![graphics](links/graphics.gif)
+<br>
 From the perspective of HTML and CSS design, it wasn't easy to fit all of the information in as few HTML documents as possible. This required the generation and management of several hidden overlays.<br>
 It also wasn't easy to make the website responsive for viewing and interacting on mobile, considering the different interaction methods between the two types of devices and the change in proportions and screen ratios. This required the generation of many different stylesheets. Eventually, we decided that the game would not be responsive.
 
