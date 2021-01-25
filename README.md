@@ -62,7 +62,7 @@ A truly Italian-stereotype-style red checkered tablecloth flutters on the screen
 If one is tired to play, there is a button that leads to the ["Thank you" page](#thank-you-page).<br>
 The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).<br>
 <br>
-![waitingroom](links/tablecoth.gif)
+![waitingroom](links/tablecloth.gif)
 <br>
 <br>
 #### About
