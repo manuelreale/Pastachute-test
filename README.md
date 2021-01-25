@@ -170,7 +170,7 @@ socket.on("mousesx", mouseMessagesx);
  }
 ```
 
- At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
+ At the beginning of each waiting room, to call the creation of the tablecloth in [vendor.js](https://github.com/tonistiigi/vendor.js/) we reset the 3d scene when the 'timer' variable in the server was equal to zero
 
 
 ```
@@ -192,9 +192,10 @@ socket.on("mousesx", mouseMessagesx);
 #### Tools
 * [p5.js](https://p5js.org/)
 * [matter.js](https://brm.io/matter-js/)
-* [JQuery](https://jquery.com/)
 * [skrollr.js](https://github.com/Prinzhorn/skrollr)
 * [three.js](https://threejs.org/)
+* [vendor.js](https://github.com/tonistiigi/vendor.js/)
+* [JQuery](https://jquery.com/)
 
 ## Team
 * [Martina Bracchi](mailto:martinabracchi.mb@gmail.com)  
