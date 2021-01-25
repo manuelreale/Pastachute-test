@@ -7,6 +7,12 @@
   --timer-layer: 600;
 }
 
+
+/* Warning */
+#warning-container {
+  display: none;
+}
+
 /**************TENDA**********/
 canvas {
   right: 0;

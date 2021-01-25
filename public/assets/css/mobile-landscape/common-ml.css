@@ -1,6 +1,9 @@
 :root {
-  --header-layer: 100;
-  --overlay-layer: 200;
+  /* LAYERS Z-INDEX */
+    --bottom-layer: 0;
+    --waiting-room-layer: 100;
+    --header-layer: 800;
+    --overlay-layer: 850;
 
   --top-margin:2vw;
   --margin:4vw;

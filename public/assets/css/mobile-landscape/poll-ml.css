@@ -1,7 +1,38 @@
+:root {
+    --toggle-layer: 400;
+    --canvas-layer: 350;
+    --dropped-layer: 300;
+    --stop-layer: 600;
+    --forks-layer: 500;
+    --timer-layer: 600;
+
+    --warning-container: 700;
+}
+
 #poll {
   /* background: red; */
   width: 100vw;
   height: 100vh;
 }
 
-#warning-container {display: none;}
+#warning-container {
+position: fixed;
+top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: red;
+  z-index: var(--warning-layer);
+
+  display: block;
+}
+
+#warning-message {
+position: absolute;
+font-size: 5vh;
+width: 100%;
+top: 50%;
+transform:translate(0, -50%);
+font-family: baskerville-urw;
+font-style: italic;
+text-align: center;
+}

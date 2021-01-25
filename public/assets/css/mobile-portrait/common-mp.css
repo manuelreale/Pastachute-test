@@ -2,8 +2,8 @@
 /* LAYERS Z-INDEX */
   --bottom-layer: 0;
   --waiting-room-layer: 100;
-  --header-layer: 200;
-  --overlay-layer: 300;
+  --header-layer: 800;
+  --overlay-layer: 850;
 
 /* MARGINS     */
   --mobile-margin: 4vw;
