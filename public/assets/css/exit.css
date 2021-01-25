@@ -109,6 +109,7 @@ position:relative;
   z-index: 5;
   border: solid 2px black;
   padding: 1% 2%;
+  outline: none;
 }
 
 

@@ -110,6 +110,7 @@ canvas {
   border: solid 2px black;
   padding: 1% 2%;
   cursor: pointer;
+  outline: none;
 }
 
 

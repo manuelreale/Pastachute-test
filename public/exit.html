@@ -40,24 +40,44 @@
 
       var trivia = [
       //1
-'Did you know that the invention of pasta dates way back, even before the ancient Romans? We have proof that the Etruscan ate a dish that is the ancestor of today’s lasagna (lagana) indeed the tools to prepare the sheets of pasta were found inside their tombs.',
+'Did you know that the invention of pasta dates way back, even before the ancient Romans? We have proof that the Etruscan ate a dish that is the ancestor of today’s lasagna (lagana), and indeed the tools to prepare the sheets of pasta were found inside their tombs.',
 //2
-'The first instance of “pastasciutta” dates back to the XII century, in Sicily, during the Arabian domination. In the region of Trabia so much pasta was produced that it was exported to Calabria and “to many other Muslim and Christian lands”.',
+'The first instance of “pastasciutta” (dry pasta) dates back to the XII century, in Sicily, during the Arabian domination. In the sicilian region of Trabia so much pasta was produced that it could be exported to Calabria and “to many other Muslim and Christian lands”. Pasta was air dried so that it would become “asciutta” (dry) in order not to spoil during long trips and even journeys through the Arabian deserts.',
 //3
-'Pastasciutta was typical of the southern regions of Italy, and liguria, where the air is dried and the pasta can naturally air dry outdoors. While in the northern regions, where the weather is more humid, pasta was made with eggs and had often a filling (like cappelletti or ravioli).',
+'Pastasciutta was typical of the southern regions of Italy, and Liguria (in the north), where the air is drier and the pasta could therefore naturally air dry outdoors. In the northern regions, instead, where the weather is more humid, pasta was made with eggs and had sometimes a filling (like cappelletti or ravioli), though it could not be stored as long.',
 //4
-'Pasta became a food for the masses only starting from the XVII century, following the great famine in the Kingdom of Naples. People couldn’t buy bread, let alone meat, so they began consuming pasta, which had become more affordable thanks to the inventions of the die machine and the press. ',
+'Pasta became a food for the masses only since the XVII century, following the great famine in the Kingdom of Naples. During those times people couldn’t buy bread, let alone meat, so they began consuming pasta, which had become more affordable thanks to the inventions of the die machine and the press.',
 //5
-'The taste for pasta “al dente” was developed in the XVII century, while before that pasta was often overcooked, softer and more difficult to digest.',
+'The taste for cooking pasta “al dente” was developed in the XVII century, while before that, pasta was often overcooked, softer and more difficult to digest.',
 //6
-'Already in the XVIII century, the neapolitans gained the nickname of “mangiamacheroni” which was only used for the Sicilians up until then. Pasta became a national symbol in italy. Italian playwright Carlo Goldoni when he was in Paris heard people say: “you want to feed soup to an italian? Italians eat nothing but maccheroni, maccheroni, maccheroni”.',
+'Already in the XVIII century, the neapolitans gained the nickname of “mangiamacheroni” (maccheroni eaters), which was only used for Sicilians up until then. Pasta became a national symbol for Italy, a simple dish often associated with the working class. Italian playwright Carlo Goldoni when he was in Paris even heard people say: “you want to feed soup to an italian? Italians eat nothing but maccheroni, maccheroni, maccheroni”.',
 //7
 'It was in the XVII century that pasta became associated with the famous tomato sauce, in the Kingdom of Naples. Tomato had been brought back to Europe from the “new world” and was already renowned and appreciated in many preparations.',
 //8
-'The noun pasta comes from the late latin (păsta) and from the greek (πάστη - paste) and it means flour mixed with water and salt. The word maccheroni, instead, comes from the etruscan word “makària” or “makarṓnia”, which means blessed food, it was offered during funerary cerimonies.',
-      ]
+'The noun pasta comes from the late latin (păsta) and from the greek (πάστη - paste) which means flour mixed with water and salt. The word maccheroni, instead, comes from the etruscan word “makària” or “makarṓnia”, which means blessed food, and it was offered during funerary ceremonies.',
+//9
+'Since the time of the Etruscans, pasta was baked (like lasagne) in its dressing sauce, instead of being cooked in boiling water and then dressed afterwards like it is now, this new method was adopted since the middle ages. Although in some preparations, pasta is still baked or boiled and then baked (like baked pasta).',
+//10
+'Pasta introduced the usage of cutlery in Italy, much earlier than it was introduced in the rest of Europe, where people still ate with their hands up until the XVIII century. Indeed a fork was a much more convenient tool when eating piping hot and slippery pasta! Even since the XIV century in the Italian region of Emilia it was suggested to eat lasagne with a pointed wooden tool.',
+//11
+'In Italy, pasta was a more common food for the poor and working classes, consumed as a daily nutritious meal. On the other hand, beyond the Alps, in the rest of Europe, it was renowned among the nobles as “an original delicacy, an Italian extravagance and a delicacy for the rich”, and it was eaten as a side, rather than as a main dish. It wouldn’t make its way out of nobility’s palaces before modernity.',
+//12
+'In a book from the XIV century, the Libro de arte coquinaria, it was advised for pasta to be cooked “al dente” and dressed in a light but nutritious way, in order to be more easily and quickly digested.',
+//13
+'Since the ancient middle ages, Parmesan cheese was used as a dressing to add flavour to pasta, together with spices, perhaps an ancestor of “cacio e pepe”.',
+//14
+'It was only in the XVII century that pasta became associated with the famous tomato sauce, in the Kingdom of Naples. Tomato had been brought back to Europe from the “new world” in the XVI century and was already renowned and appreciated in many preparations, but it took a century for it to be used as a condiment for pasta dishes.',
+//15
+'In the United States, it is widespread the belief that the invention of pasta was brought to Italy from China, by Marco Polo. This belief was instilled by the “Macaroni Journal”, with the aim of making pasta more socially accepted, trying to break its association to the Italian ghettos and linking it to the more “ennobled” asian culture.',
+//16
+'Italian composer Gioachino Rossini considered himself a “third class pianist, but first gastronome in the universe” he loved pasta so much that he would have it shipped directly to him from Rome and Naples. He loved pasta so much, to the extent that in a letter to a friend he signed himself “Gioacchino Rossini without Maccheroni”, as a complaint for a delayed shipment of pasta.',
+//17
+'In Italy 3/4 of pasta produced is dried pasta, the other 1/4 is fresh pasta, often prepared with eggs. Italy is the first country in the world for yearly consumption of pasta, with 25 kg per capita, followed by Tunisia and Greece, with respectively 12 and 11,2 kg per person.',
+//18
+'Did you know that, by tradition, it is preferable not to add grated parmesan cheese on top of a pasta dish that contains fish or seafood?',
+            ]
 
-      var randomNumber = Math.floor(Math.random() * 8); //creates random No. from 1 - 3
+      var randomNumber = Math.floor(Math.random() * 18); //creates random No. from 1 - 3
       console.log(randomNumber)
       document.getElementById("randomTrivia").innerHTML = trivia[randomNumber];
     }
@@ -86,7 +106,7 @@
 <img onclick='showCredits()' id='troppo-italiano' src='assets/img/troppo-italiano.png' >
 <div id='credits'>
 <div id="team" class="credits-paragraph">Team: <a href="mailto:martinabracchi.mb@gmail.com">Martina Bracchi</a> - <a href="mailto:silcasavola@gmail.com">Silvia Casavola</a> - <a href="mailto:dario.faudella@gmail.com">Dario Faudella</a> - <a href="mailto:manuel.reale2000@gmail.com">Manuel Reale</a> - <a href="mailto:donren.99@gmail.com">Donato Renzulli</a></div><br>
-<div id="faculty" class="credits-paragraph">Faculty: Michele Mauri - Andrea Benedetti - Tommaso Elli</div>
+<div id="faculty" class="credits-paragraph">Faculty: Michele Mauri - Tommaso Elli - Andrea Benedetti</div>
 </div>
 
 </div>
