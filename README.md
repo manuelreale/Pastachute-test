@@ -40,36 +40,45 @@ Friends can arrange to visit the website at the same time to play together or ag
 ## Structure
 #### Homepage
 The homepage is designed to welcome the user and to prepare them to the fast dynamics of the poll. The library [skrollr](https://github.com/Prinzhorn/skrollr) was used to display a sequence of very concise information about the attitude they need to take on: be fierce, be fast and ready to click.<br>
-Once they are ready to enter the game, the user clicks on a button and a pop-up appears that counts down the time remaining to the end of the current match (max. 15 seconds).<br>
-The purpose of this section is to entertain the user until the start of a new match, so that they don't find themselves in the middle of a duel that has already started. It contains a mini-game: pieces of pasta falling from above and a colander that can be moved to catch as many pieces as possible.
-
+<br>
 ![homepage](links/home.gif)
-
+<br>
+<br>Once they are ready to enter the game, the user clicks on a button and a pop-up appears that counts down the time remaining to the end of the current match (max. 15 seconds).
+The purpose of this section is to entertain the user until the start of a new match, so that they don't find themselves in the middle of a duel that has already started. It contains a mini-game: pieces of pasta falling from above and a colander that can be moved to catch as many pieces as possible.<br>
+<br>
+![minigame](links/minigame.gif)
+<br>
+<br>
 #### Poll
 The poll works in a very simple way. The screen is split in two halves; each side houses each round a different type of pasta. The user needs to place their mouse (or their finger) on the side they want to vote for, and click (or tap) as many times as possible to make it win. Each click generates a piece of the chosen pasta in that position of the screen, this then falls on the ground and piles up on the others, thanks to the mechanics of [matter.js](https://brm.io/matter-js/). This visual representation makes it very easy to understand what pasta is winning and the contribution of the other users, who are generating pasta on the other side of the screen.<br>
-Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.
-
+Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.<br>
+<br>
+![waitingroom](links/poll.gif)
+<br>
+<br>
 #### Waiting room
 The waiting room is a 5-second-long transitional phase between a match and another.<br>
 A truly Italian-stereotype-style red checkered tablecloth flutters on the screen and falls at the end of the timer, uncovering the actual poll. During this phase, online users can see each other's cursors, in the form of forks, and therefore understand how many players are online with them at that moment.<br>
 If one is tired to play, there is a button that leads to the ["Thank you" page](#thank-you-page).<br>
-The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).
-
-![waitingroom](links/poll.gif)
-
-
+The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).<br>
+<br>
+![waitingroom](links/tablecoth.gif)
+<br>
+<br>
 #### About
 The section "About" is a hidden overlay that slides over the screen from the left, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
-It contains information about the project and the elective course. A click on the symbol of the typical Italian hand gesture "mano a borsa" displays the names of the team members and of the professors.
-
+It contains information about the project and the elective course. A click on the symbol of the typical Italian hand gesture "mano a borsa" displays the names of the team members and of the professors.<br>
+<br>
 ![about](links/about.gif)
-
+<br>
+<br>
 #### Ranking
 The section "Ranking" is a hidden overlay that slides over the screen from the right, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
-It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.
-
+It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.<br>
+<br>
 ![poll](links/ranking.gif)
-
+<br>
+<br>
 #### Thank you page
 This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.
 
@@ -86,7 +95,7 @@ One of the challenges that came up during the illustration process was making su
 <br>
 <br>
 Despite the overall minimalistic style choice, we wanted to include some playful elements like:
-* the red news ticker-like red banner. In the homepage it displays some Italian expressions about food, that were literally translated into English, mantaining a questionable syntax. In the page of the poll, it displays the number of users online and the result of the previous match.
+* the red news ticker-like banner. In the homepage it displays some Italian expressions about food, that were literally translated into English, mantaining a questionable syntax. In the page of the poll, it displays the number of users online and the result of the previous match.
 * the picture of the typical Italian "mano a busta", in the "About" section, that rotates and mimics the hand gesture on hover, and displays the names of the team members and of the professors on click.
 * the textual and graphic elements in the "Thank you" page.
 ![graphics](links/graphics.gif)
@@ -96,11 +105,6 @@ It also wasn't easy to make the website responsive for viewing and interacting o
 ![mobile](links/mobile.gif)
 <br>
 #### Coding challenges
-
-Coding-wise one of the challenges was linked to the usage of the timer function and all the other functions linked to it. A variable needed to be passed from a webpage to another, and certain functions needed to be called whenever the timer reached a certain amount, like the calling of the curtain function, when a match ends and it consequent fall and deletion. We solved this specific issue by deleting the curtain scene and then re-creating it at the end of each round!<br>
-
-Another coding issues we ran into, was linked to the pixel density of mobile screens. When the game was displayed vertically on a smartphone, p5 interpreted the canvas as made up by a very large amount of pixels vertically, and therefore the pieces of pasta looked like they were falling in slow-motion. We solved this issue by creating an if-statement that handled the physics of the pieces of pasta according to the proportions and the ratio of the screen.
-
 
 One of the first challenges we had to face in order to make a timer based match game,
 was to make a universal time agreed by every user so that every player in the game was
@@ -124,7 +128,7 @@ setInterval(function(){
 }, 1000);
 ```
 
-We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
+We needed also a place to store and update the total score of each type of pasta, so we used [Firestore Database](https://firebase.google.com/docs/firestore)
 We found a lot of challenges optimizing the database read process to avoid overloading it, ;
 
 
@@ -166,7 +170,7 @@ socket.on("mousesx", mouseMessagesx);
  }
 ```
 
- At the beginning of each waiting room, to call the creation of the tablecloth in vendor.js we reset the 3d scene when the 'timer' variable in the server was equal to zero
+ At the beginning of each waiting room, to call the creation of the tablecloth in [vendor.js](https://github.com/tonistiigi/vendor.js/) we reset the 3d scene when the 'timer' variable in the server was equal to zero
 
 
 ```
@@ -188,9 +192,12 @@ socket.on("mousesx", mouseMessagesx);
 #### Tools
 * [p5.js](https://p5js.org/)
 * [matter.js](https://brm.io/matter-js/)
-* [JQuery](https://jquery.com/)
+* [Firebase](https://firebase.google.com/)
 * [skrollr.js](https://github.com/Prinzhorn/skrollr)
 * [three.js](https://threejs.org/)
+* [vendor.js](https://github.com/tonistiigi/vendor.js/)
+* [socket.io](https://socket.io/)
+* [JQuery](https://jquery.com/)
 
 ## Team
 * [Martina Bracchi](mailto:martinabracchi.mb@gmail.com)  
