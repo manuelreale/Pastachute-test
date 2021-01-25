@@ -127,6 +127,22 @@ them in the same phase.
     if (timer > 26 && timer < 31) {phase = 2; setwinner();}
     if (timer == 31) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for vs2
   }, 1000);
+
+  function getRandomNumber() {
+    var number = Math.floor(Math.random() * 25)
+    while(number == vs1 || number == vs2){
+    number = Math.floor(Math.random() * 25);}
+
+    if(punteggio1 > punteggio2){
+    lastwinner = vs1
+    vs1 = vs1;
+    vs2 = number; }
+
+    if(punteggio1 < punteggio2){
+    lastwinner = vs2
+    vs1 = vs2
+    vs2 = number;}
+  }
 ```
 
 We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
