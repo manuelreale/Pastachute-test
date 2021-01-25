@@ -1,11 +1,12 @@
 :root {
-  --mobile-margin: 4vw;
-  --mobile-topmargin: 2vw;
+    --toggle-layer: 400;
+    --canvas-layer: 350;
+    --dropped-layer: 300;
+    --stop-layer: 600;
+    --forks-layer: 500;
+    --timer-layer: 600;
 
-  --header-layer: 100;
-  --overlay-layer: 200;
-  --warning-layer: 50;
-  --game-layer: 0;
+    --warning-container: 700;
 }
 
 #poll {
@@ -16,18 +17,19 @@
 }
 
 #warning-container {
-position: absolute;
+position: fixed;
+top: 0;
   width: 100vw;
   height: 100vh;
   background: red;
   z-index: var(--warning-layer);
 
-  display: none;
+  display: block;
 }
 
 #warning-message {
 position: absolute;
-font-size: 5vh;
+font-size: 5vw;
 width: 100%;
 top: 50%;
 transform:translate(0, -50%);

@@ -14,12 +14,14 @@
     <link rel='stylesheet' href='poll.css'> -->
 
     <!-- Computer stylesheet -->
-    <link rel='stylesheet' type='text/css' href='assets/css/poll.css'  >
+    <link rel='stylesheet' type='text/css' href='assets/css/poll.css' media="screen and (min-width:992px)" >
     <link rel='stylesheet' type='text/css' href='assets/css/common.css' media="screen and (min-width:992px)" >
     <!-- Mobile portrait mode -->
     <link rel='stylesheet' type='text/css' href='assets/css/mobile-portrait/common-mp.css' media="screen and (orientation:portrait) and (max-width:991px)" >
+    <link rel='stylesheet' type='text/css' href='assets/css/mobile-portrait/poll-mp.css' media="screen and (orientation:portrait) and (max-width:991px)" >
     <!-- Mobile landscape mode -->
     <link rel='stylesheet' type='text/css' href='assets/css/mobile-landscape/common-ml.css' media="screen and (orientation:landscape) and (max-width:991px)" >
+    <link rel='stylesheet' type='text/css' href='assets/css/mobile-landscape/poll-ml.css' media="screen and (orientation:landscape) and (max-width:991px)" >
     <!-- Fonts stylesheet -->
     <link rel="stylesheet" href="https://use.typekit.net/ttj2hjf.css">
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -74,6 +76,11 @@
   <span onclick='openAbout()'class='header-btn' id='about-btn'> About</span>
   <span onclick='openRan()'class='header-btn' id='ranking-btn'>Ranking</span>
   <div id='title'>PASTA CHUTE</div>
+  </div>
+
+  <!-- Warning message -->
+  <div id="warning-container">
+  <div id="warning-message">You can't play in mobile mode,<br>for now...</div>
   </div>
 
 <div id='game-container'></div>
