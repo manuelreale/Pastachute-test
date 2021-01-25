@@ -51,9 +51,13 @@ A truly Italian-stereotype-style red checkered tablecloth flutters on the screen
 If one is tired to play, there is a button that leads to the ["Thank you" page](#thank-you-page).<br>
 The tablecloth is a 3D object built in [three.js](https://threejs.org/), which was taken from [Memetic Warfare Archive](https://densitydesign.github.io/teaching-dd15/course-results/es03/group03/).
 
+![waitingroom](links/poll.gif)
+
 #### Poll
 The poll works in a very simple way. The screen is split in two halves; each side houses each round a different type of pasta. The user needs to place their mouse (or their finger) on the side they want to vote for, and click (or tap) as many times as possible to make it win. Each click generates a piece of the chosen pasta in that position of the screen, this then falls on the ground and piling up on the others, thanks to the mechanics of [matter.js](https://brm.io/matter-js/). This visual representation makes it very easy to understand what pasta is winning and the contribution of the other users, who are generating pasta on the other side of the screen.<br>
 Each match last 15 seconds. The short duration makes the single contest very quick and ephemeral, but all results contribute to the overall ranking.
+
+![poll](links/poll3.gif)
 
 #### About
 The section "About" is a hidden overlay that slides over the screen from the left, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
@@ -64,6 +68,8 @@ It contains information about the project and the elective course. A click on th
 #### Ranking
 The section "Ranking" is a hidden overlay that slides over the screen from the right, when triggered by clicking (or tapping on) the corresponding button in the header.<br>
 It contains the global results of the game. It ranks all the types of pasta by the total amount of clicks received.
+
+![poll](links/poll2.gif)
 
 #### Thank you page
 This page is reachable through the waiting room, the user can visit it when they are tired of playing and want to leave the website. It contains each time a different piece of trivia about pasta, which is randomly selected from an array.
