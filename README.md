@@ -119,13 +119,14 @@ them in the same phase.
     socket.emit("phase"+phase); //send phase
   }
 
-setInterval(function(){
-  timer++; //update timer every sec
-  if (timer <= 4) {phase = 0; }
-  if (timer > 4 && timer <= 19) {phase = 1;}
-  if (timer > 19 && timer < 24) {phase = 2;}
-  if (timer > 24) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for the looser
-}, 1000);
+  setInterval(function(){
+    console.log(timer, phase);
+    timer++; //update timer every sec
+    if (timer <= 6) {phase = 0; }
+    if (timer > 6 && timer <= 26) {phase = 1;}
+    if (timer > 26 && timer < 31) {phase = 2; setwinner();}
+    if (timer == 31) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for vs2
+  }, 1000);
 ```
 
 We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
