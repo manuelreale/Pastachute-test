@@ -119,33 +119,16 @@ them in the same phase.
     socket.emit("phase"+phase); //send phase
   }
 
-  setInterval(function(){
-    console.log(timer, phase);
-    timer++; //update timer every sec
-    if (timer <= 6) {phase = 0; }
-    if (timer > 6 && timer <= 26) {phase = 1;}
-    if (timer > 26 && timer < 31) {phase = 2; setwinner();}
-    if (timer == 31) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for vs2
-  }, 1000);
-
-  function getRandomNumber() {
-    var number = Math.floor(Math.random() * 25)
-    while(number == vs1 || number == vs2){
-    number = Math.floor(Math.random() * 25);}
-
-    if(punteggio1 > punteggio2){
-    lastwinner = vs1
-    vs1 = vs1;
-    vs2 = number; }
-
-    if(punteggio1 < punteggio2){
-    lastwinner = vs2
-    vs1 = vs2
-    vs2 = number;}
-  }
+setInterval(function(){
+  timer++; //update timer every sec
+  if (timer <= 4) {phase = 0; }
+  if (timer > 4 && timer <= 19) {phase = 1;}
+  if (timer > 19 && timer < 24) {phase = 2;}
+  if (timer > 24) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for the looser
+}, 1000);
 ```
 
-We needed also a place to store and update the total score of each type of pasta, so we used Firestore Database
+We needed also a place to store and update the total score of each type of pasta, so we used [Firestore Database](https://firebase.google.com/docs/firestore)
 We found a lot of challenges optimizing the database read process to avoid overloading it, ;
 
 
@@ -209,9 +192,11 @@ socket.on("mousesx", mouseMessagesx);
 #### Tools
 * [p5.js](https://p5js.org/)
 * [matter.js](https://brm.io/matter-js/)
+* [Firebase](https://firebase.google.com/)
 * [skrollr.js](https://github.com/Prinzhorn/skrollr)
 * [three.js](https://threejs.org/)
 * [vendor.js](https://github.com/tonistiigi/vendor.js/)
+* [socket.io](https://socket.io/)
 * [JQuery](https://jquery.com/)
 
 ## Team
