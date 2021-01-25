@@ -1,0 +1,195 @@
+#title {
+-skrollr-animation-name:resizeTitle;
+}
+
+@-skrollr-keyframes resizeTitle {
+0  {margin-top: 25vh; font-size: 16vh }
+200	{margin-top: 0vh; font-size: 11vh }
+}
+
+#about-btn, #ranking-btn {-skrollr-animation-name: displayMenu}
+
+  @-skrollr-keyframes displayMenu {
+  0  {display: none}
+  400	{display: block}
+  }
+
+
+#page-content {
+  position: fixed;
+  width: 100%;
+}
+
+.paragraph {
+  width: 100%;
+  position: inherit;
+  top: 40vh;
+  font-size: 7vh;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Pasta is good */
+#p1{
+-skrollr-animation-name:p1;
+}
+
+@-skrollr-keyframes p1 {
+100  { opacity: 0; margin-top:3vh }
+200	{ opacity: 1; margin-top:0vh}
+600  {opacity: 1; margin-top:0vh}
+700	{opacity:0; margin-top:-3vh }
+}
+
+/* but which is the best? */
+#p2{
+-skrollr-animation-name:p2;
+}
+
+@-skrollr-keyframes p2 {
+300  { opacity: 0; margin-top:3vh }
+400	{ opacity: 1; margin-top:0vh}
+600  {opacity: 1; margin-top:0vh}
+700	{opacity:0; margin-top:-3vh }
+}
+
+/* You're about to enter the biggest pasta poll in history */
+#p3{
+-skrollr-animation-name:p3;
+}
+
+@-skrollr-keyframes p3 {
+700  { opacity: 0; margin-top:3vh }
+800	{ opacity: 1; margin-top:0vh}
+1000  {opacity: 1; margin-top:0vh}
+1100	{opacity:0; margin-top:-3vh }
+}
+
+/* Get prepared */
+#p4{
+-skrollr-animation-name:p4;
+}
+
+@-skrollr-keyframes p4 {
+1100  { opacity: 0; margin-top:3vh }
+1200	{ opacity: 1; margin-top:0vh}
+2200  {opacity: 1; margin-top:0vh}
+2300	{opacity:0; margin-top:-3vh }
+}
+
+/* to be fierce */
+#p5{
+-skrollr-animation-name:p5;
+}
+
+@-skrollr-keyframes p5 {
+1100  { opacity: 0; margin-top:3vh }
+1200	{ opacity: 1; margin-top:0vh}
+1400  {opacity: 1; margin-top:0vh}
+1500	{opacity:0; margin-top:-3vh }
+}
+
+/* to be fast */
+#p6{
+-skrollr-animation-name:p6;
+}
+
+@-skrollr-keyframes p6 {
+1500  { opacity: 0; margin-top:3vh }
+1600	{ opacity: 1; margin-top:0vh}
+1800  {opacity: 1; margin-top:0vh}
+1900	{opacity:0; margin-top:-3vh }
+}
+
+/* to click */
+#p7{
+-skrollr-animation-name:p7;
+}
+
+@-skrollr-keyframes p7 {
+1900  { opacity: 0; margin-top:3vh }
+2000	{ opacity: 1; margin-top:0vh}
+2200  {opacity: 1; margin-top:0vh}
+2300	{opacity:0; margin-top:-3vh }
+}
+
+/* Are you ready? */
+#p8{
+-skrollr-animation-name:p8;
+}
+
+@-skrollr-keyframes p8 {
+2300  { opacity: 0; margin-top:3vh }
+2400	{ opacity: 1; margin-top:0vh}
+}
+
+/* SCROLL ARROW */
+#scroll {
+  position: fixed;
+  bottom: 10vh;
+  left: 50%;
+  width: 15vw;
+margin: auto;
+z-index: 120;
+transform:translate(-50%, 0);
+-skrollr-animation-name: scroll-suggestion;
+
+-webkit-animation: bounce 2s 2;
+}
+
+@-skrollr-keyframes scroll-suggestion {
+4400  {opacity: 1}
+4600	{opacity: 0}
+}
+
+@-webkit-keyframes bounce {
+  0%       { bottom:10vh; }
+  50%      { bottom:18vh; }
+  100%     {bottom:10vh;}
+}
+
+
+/* SKIP INTRO  */
+#skip-btn {
+  position: fixed;
+  font-size: 5vh;
+  bottom: 10vh;
+  right: 10vh;
+  color: black;
+  font-family: baskerville-urw;
+  font-style: italic;
+  transform:translate(-50%, 0);
+  transform-origin: center;
+
+  cursor: pointer;
+  z-index: 120;
+
+-skrollr-animation-name:skip;
+}
+
+@-skrollr-keyframes skip {
+2200  {opacity: 1}
+2300	{opacity: 0}
+}
+
+/* PLAY BUTTON */
+#play-btn {
+  position: fixed;
+  font-size: 2vw;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  bottom: 10vh;
+  left: 50%;
+  transform:translate(-50%, 0);
+  transform-origin: center;
+  border: solid 2px black;
+  padding: 1% 2%;
+  outline: none;
+  -skrollr-animation-name: play-btn;
+  }
+
+  @-skrollr-keyframes play-btn {
+  2300  {opacity: 0}
+  2400	{opacity: 1}
+  }

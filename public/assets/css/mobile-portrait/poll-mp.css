@@ -1,0 +1,37 @@
+:root {
+  --mobile-margin: 4vw;
+  --mobile-topmargin: 2vw;
+
+  --header-layer: 100;
+  --overlay-layer: 200;
+  --warning-layer: 50;
+  --game-layer: 0;
+}
+
+#poll {
+  /* background: red; */
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--game-layer);
+}
+
+#warning-container {
+position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: red;
+  z-index: var(--warning-layer);
+
+  display: none;
+}
+
+#warning-message {
+position: absolute;
+font-size: 5vh;
+width: 100%;
+top: 50%;
+transform:translate(0, -50%);
+font-family: baskerville-urw;
+font-style: italic;
+text-align: center;
+}

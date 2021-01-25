@@ -32,7 +32,8 @@ let usercount = 0;
 let lastwinner;
 
 function newConnection(socket){
-usercount++
+  socket.emit("lastwinner", lastwinner)
+  usercount++
   setInterval(function(){ phasef(); }, 100); //run phasef every sec
 
   function phasef(){
@@ -40,7 +41,7 @@ usercount++
     socket.emit("vs",vs1,vs2);
     socket.emit("phase"+phase); //send phase
     socket.emit("usercount", usercount)
-      socket.emit("lastwinner", lastwinner)
+    socket.emit("lastwinner", lastwinner)
   }
 
 socket.on('mouse', mouseMessage);
@@ -73,10 +74,10 @@ usercount--
 setInterval(function(){
   console.log(timer, phase);
   timer++; //update timer every sec
-  if (timer <= 4) {phase = 0; }
-  if (timer > 4 && timer <= 19) {phase = 1;}
-  if (timer > 19 && timer < 24) {phase = 2;}
-  if (timer > 24) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for vs2
+  if (timer <= 6) {phase = 0; }
+  if (timer > 6 && timer <= 26) {phase = 1;}
+  if (timer > 26 && timer < 31) {phase = 2; setwinner();}
+  if (timer == 31) {phase = 0; timer = 0; getRandomNumber(); punteggio1 = 0; punteggio2 = 0;} //get a random value for vs2
 }, 1000);
 
 
@@ -94,5 +95,14 @@ function getRandomNumber() {
   lastwinner = vs2
   vs1 = vs2
   vs2 = number;}
+}
 
+function setwinner(){
+  if(punteggio1 > punteggio2){
+  lastwinner = vs1
+}
+
+  if(punteggio1 < punteggio2){
+  lastwinner = vs2
+}
 }

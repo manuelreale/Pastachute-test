@@ -3,7 +3,8 @@
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/urR596FsU68
 
-function Box1(x, y, w, h) {
+
+function Box(x, y, w, h) {
   var options = {
     friction: 0.5,
     restitution: 0.6
@@ -25,8 +26,12 @@ function Box1(x, y, w, h) {
     stroke(255);
     fill(127);
     imageMode(CENTER)
-    image(pastaimg[vs1], this.w-60, this.h-16,pastaimg[vs1].width/4,pastaimg[vs1].height/4);
+    image(pastaimg[vs2], this.w-60, this.h-16,pastaimg[vs2].width/4,pastaimg[vs2].height/4);
     //rect(0, 0, this.w, this.h);
     pop();
   };
+
+  this.removefromworld = function (){
+    World.remove(world, this.body)
+  }
 }

@@ -1,9 +1,0 @@
-#myCanvas{
-  position: absolute;
-  z-index: 0;
-}
-
-#pasta-list{
-  position: absolute;
-  z-index: 2;
-}

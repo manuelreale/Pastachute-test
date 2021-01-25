@@ -8,7 +8,6 @@ let punteggio1 = 0;
 let punteggio2 = 0;
 let winner;
 let pasta;
-let pastadb = [];
 let a;
 let b;
 let c;
@@ -110,7 +109,8 @@ function setup() {
   }
   var cnv =  createCanvas(windowWidth, windowHeight);
   // cnv.id('myCanvas');
-  cnv.parent('canvacontainer')
+  cnv.parent('game-container')
+  cnv.style.zIndex = "0"
   background('white')
 
 
@@ -121,16 +121,16 @@ function setup() {
   var options = {
     isStatic: true
   };
-  ground = Bodies.rectangle(0, height, windowWidth*10 , 100, options);
+  ground = Bodies.rectangle(0, height - windowHeight/35 , windowWidth*10 , 100, options);
   World.add(world, ground);
 
   var firebaseConfig = {
-    apiKey: "AIzaSyAKn-isX8FJ8M9qbVSRzdgxa5kuc_Lbmig",
-     authDomain: "pastachute25012021.firebaseapp.com",
-     projectId: "pastachute25012021",
-     storageBucket: "pastachute25012021.appspot.com",
-     messagingSenderId: "991915130834",
-     appId: "1:991915130834:web:cb484314fc294236f6920b"
+    apiKey: "AIzaSyB05fGr8baJ4MYGPS0qZDJEHw2ON4Xk6CU",
+    authDomain: "pastachutenight.firebaseapp.com",
+    projectId: "pastachutenight",
+    storageBucket: "pastachutenight.appspot.com",
+    messagingSenderId: "103964475619",
+    appId: "1:103964475619:web:f62d862db4c21d20f785d6"
   };
 
   // Initialize Firebase
@@ -144,14 +144,13 @@ function setup() {
       let changes = snapshot.docChanges();
       changes.forEach(change => {
           //console.log(change.doc.data());
-          if(change.type == 'added'){
-            console.log('snapshot')
-            // namerank = document.getElementById('pasta-td-'+i);
-            // namerank.innerHTML=change.doc.data().name
-            // scorerank = document.getElementById('score-td-'+i);
-            // scorerank.innerHTML=change.doc.data().score
+      if(change.type == 'added'){
+      console.log('snapshot')
+      namerank = document.getElementById('pasta-td-'+i);
+      namerank.innerHTML=change.doc.data().name
+      scorerank = document.getElementById('score-td-'+i);
+      scorerank.innerHTML=change.doc.data().score
             i++
-            // showrank(change.doc);
           }
       });
   });
@@ -173,30 +172,29 @@ altrimouse = image(bf, data.x * width, data.y * height, windowWidth/10,windowWid
 }
 
 
+
 function draw() {
   let countdown = document.getElementById('timer');
+  let exit = document.getElementById('divstop');
   let utenti = document.getElementById('text-marquee');
+  console.log('statotenda: '+ statotenda)
   utenti.innerHTML= "PASTA CHUTE // PASTA CHUTE // PASTA CHUTE " + "  --- USERS ONLINE: " + users + " ---  LIVE NOW:  " + nomi[vs1] + "  vs  " + nomi[vs2] + "  --- LAST WINNER:  " + nomi[lastwinner] + " --- PASTA CHUTE // PASTA CHUTE // PASTA CHUTE "
-  if(timer==20){
-    refresh=false;
-  }
 
-  if(timer==21 && !refresh){
-    setTimeout(function(){
-    window.open("./index.html","_self");
-    let refresh=true;
-  },300)
-  }
   clear()
 
 
    if (phase == 0) {
      countdown.style.display = 'block';
-     countdown.innerHTML=  5 - timer
+     exit.style.display = 'block'
+     countdown.innerHTML=  7 - timer
 
-    for (var i = 0; i < boxes.length; i++) {
+    for (var i = 0; i < boxes.length; i++){
+      boxes[i].removefromworld()
       boxes.splice(i,1);
     }
+
+
+
     punteggio1 = 0;
     punteggio2 = 0;
     // setTimeout(assegna, 750)
@@ -206,16 +204,16 @@ function draw() {
     statotenda = true}
 
 if(windowWidth<990){
-image(wf, mouseX, mouseY, windowWidth/4, windowWidth/4)
+imageMode(CENTER)
+image(wf, mouseX, mouseY - windowWidth/8, windowWidth/4, windowWidth/4)
 }else{
-image(wf, mouseX, mouseY, windowWidth/10, windowWidth/10);
+image(wf, mouseX, mouseY - windowWidth/20, windowWidth/10, windowWidth/10);
 }
 let message = {
   x: mouseX/width,
   y: mouseY/height,
 };
 socket.emit("mouse", message)
-
 }
 
 
@@ -223,6 +221,7 @@ socket.emit("mouse", message)
 
   if (phase == 1) {
     countdown.style.display = 'none';
+    exit.style.display = 'none'
     // setTimeout(assegna,1000);
     statotenda = false
     clear()
@@ -231,13 +230,6 @@ socket.emit("mouse", message)
     for (var i = 0; i < boxes.length; i++) {
       boxes[i].show();
     }
-    push()
-    noStroke(255);
-    fill('red');
-    rectMode(LEFT);
-    // rect(0, ground.position.y - 40, windowWidth, 100);
-    pop()
-    // console.log('timer: ' + (25 - timer))
 
     if (ric) {
       if (punteggio1 > punteggio2) {
@@ -249,7 +241,7 @@ socket.emit("mouse", message)
       }
 
       textSize(150)
-      text(20 - timer, windowWidth / 2, 200)
+      text(26 - timer, windowWidth / 2, 200)
       textSize(50)
       text(nomi[vs1] + ': ' + punteggio1, windowWidth / 8 * 2, 50)
       text('Totale: ' + (a + punteggio1), windowWidth / 8 * 2, 100)
@@ -264,6 +256,7 @@ socket.emit("mouse", message)
 
   if (phase == 2) {
     countdown.style.display = 'none';
+    exit.style.display = 'none'
     ric = false;
     push()
     rectMode(CENTER)
@@ -277,7 +270,7 @@ socket.emit("mouse", message)
     rect(windowWidth / 2, windowHeight / 2, windowWidth / 7 * 5, windowHeight / 3)
     strokeWeight(0)
     fill(0)
-    text(winner + ' won this game', windowWidth / 2, windowHeight / 2)
+    text(nomi[lastwinner] + ' won this game', windowWidth / 2, windowHeight / 2)
     pop()
     statotenda = false
 
@@ -286,7 +279,6 @@ socket.emit("mouse", message)
 }
 
 function assegna() {
-  console.log('vi faccio impazzire')
   pasta.doc(vs1.toString()).get().then(function(doc) {
     a = doc.data().score;
   })
@@ -332,22 +324,22 @@ updateRank()
 }
 
 function updateRank(){
-// db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
-// let i=0;
-//       let changes = snapshot.docChanges();
-//       changes.forEach(change => {
-//           //console.log(change.doc.data());
-//           if(change.type == 'added'){
-//             // namerank = document.getElementById('pasta-td-'+i);
-//             // namerank.innerHTML=change.doc.data().name
-//             // scorerank = document.getElementById('score-td-'+i);
-//             // scorerank.innerHTML=change.doc.data().score
-//             //
-//             // pastaList = document.getElementById('pasta-list');
-//             i++
-//           }
-//       });
-//   });
+db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
+let i=0;
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+          //console.log(change.doc.data());
+          if(change.type == 'added'){
+            namerank = document.getElementById('pasta-td-'+i);
+            namerank.innerHTML=change.doc.data().name
+            scorerank = document.getElementById('score-td-'+i);
+            scorerank.innerHTML=change.doc.data().score
+
+            // pastaList = document.getElementById('pasta-list');
+            i++
+          }
+      });
+  });
 
 }
 

@@ -255,15 +255,13 @@ function Tenda(data) {
 
   function startTimer() {
     if(timer==0){
-      F()
+      while(p.children.length > 0){
+      p.remove(p.children[0]);
+      F()}
     }
 
-      if (timer == 5) {
-      // document.getElementById("timer").style.display = 'none';
-      // document.getElementById('stop').style.display = 'none';
-      // document.getElementById('canvacontainer').style.display = 'none';
-      F()
-      }
+      if (timer == 6) {
+      F()}
   }
 
   display = document.querySelector('#timer');
