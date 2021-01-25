@@ -123,21 +123,21 @@ We found a lot of challenges optimizing the database read process to avoid overl
 
 
 ```
-  pasta.orderBy('score','desc').onSnapshot(snapshot => {
-      let i=0;
-      let changes = snapshot.docChanges();
-      changes.forEach(change => {
-          if(change.type == 'added'){
-            list= document.getElementById('pasta-li-'+i);
-            list.innerHTML=change.doc.data().name+": "+change.doc.data().score;
-            pastaList = document.getElementById('pasta-list');
-            li = document.createElement('li');
-            namerank  = document.createElement('span');
-            scorerank = document.createElement('span');
-            i++
-          }
-      });
-  });
+db.collection("Pasta").orderBy('score','desc').onSnapshot(snapshot => {
+    let i=0;
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+
+    if(change.type == 'added'){
+    // console.log('snapshot')
+    namerank = document.getElementById('pasta-td-'+i);
+    namerank.innerHTML=change.doc.data().name
+    scorerank = document.getElementById('score-td-'+i);
+    scorerank.innerHTML=change.doc.data().score
+          i++
+        }
+    });
+});
 ```
 
 
