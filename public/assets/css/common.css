@@ -130,10 +130,10 @@ height: auto;
   position: absolute;
   top: 50vh;
   width: 96vw;
-  transform:translate(0, -80%);
+  transform:translate(0, -60%);
   font-family: neue-haas-grotesk-display;
   font-weight: 400;
-  font-size: 8vh;
+  font-size: 7vh;
 }
 
 .overlay a {
@@ -148,14 +148,14 @@ font-style: italic;
 #credits {
 display: none;
 position: absolute;
-bottom: 0;
+bottom: 2vh;
 }
 
 .credits-paragraph {
   font-family: baskerville-urw;
   font-style: italic;
   font-weight: 200;
-  font-size: 1.8vw;
+  font-size: 2vw;
   cursor: pointer;
   line-height: 0.6;
 }
