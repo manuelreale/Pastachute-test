@@ -53,5 +53,5 @@ font-family: neue-haas-grotesk-display;
 font-weight: 600;
 font-size: 1vw;
 right: var(--margin);
-bottom: var(--bottom-margin);
+bottom: 5vw;
 }
