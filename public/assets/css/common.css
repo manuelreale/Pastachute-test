@@ -68,7 +68,7 @@ cursor: pointer;
   font-weight: 600;
   text-align: center;
   color: black;
-  font-size: 8vw;
+  font-size: 6vw;
   bottom: 0%;
   display: inline-flex;
   /* border: solid; */
@@ -130,10 +130,10 @@ height: auto;
   position: absolute;
   top: 50vh;
   width: 96vw;
-  transform:translate(0, -60%);
+  transform:translate(0, -80%);
   font-family: neue-haas-grotesk-display;
   font-weight: 400;
-  font-size: 7vh;
+  font-size: 8vh;
 }
 
 .overlay a {
@@ -148,14 +148,14 @@ font-style: italic;
 #credits {
 display: none;
 position: absolute;
-bottom: 2vh;
+bottom: 0;
 }
 
 .credits-paragraph {
   font-family: baskerville-urw;
   font-style: italic;
   font-weight: 200;
-  font-size: 2vw;
+  font-size: 1.8vw;
   cursor: pointer;
   line-height: 0.6;
 }
