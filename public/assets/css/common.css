@@ -270,5 +270,5 @@ marquee {
   font-size: 1vw;
   color: white;
   line-height: 1;
-  transform:translate(0, -50%);
+  transform:translate(0, -75%);
 }
