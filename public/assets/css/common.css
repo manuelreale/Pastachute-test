@@ -29,7 +29,7 @@ body::-webkit-scrollbar {
 
 .overlay, .closebtn, #troppo-italiano {  z-index: var(--overlay-layer)  }
 
-#header {  z-index: var(--header-layer)  }
+#header {  z-index: var(--header-layer) ; display: none }
 
 marquee{
   z-index: var(--marquee-layer)
