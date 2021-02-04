@@ -89,8 +89,8 @@ function setup() {
 function draw() {
 clear()
 // UPDATES THE TIMER
-select("#waiting-room-timer").html(27 - timer);
-if(27-timer< 0){
+select("#waiting-room-timer").html(22 - timer);
+if(22-timer< 0){
 select("#waiting-room-timer").html(0);
 }
 
@@ -187,7 +187,7 @@ image(colander, colanderX, colanderY, colanderW, colanderH);
   function openPoll () {
 // if a match is in progress, it display the mini-game
 
-  if (timer<25) {
+  if (timer<20) {
   select("#play-btn").hide();
   select("#skip-btn").hide();
   select("#scroll").hide();
