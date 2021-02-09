@@ -24,7 +24,7 @@ top: 0;
   background: red;
   z-index: var(--warning-layer);
 
-  display: block;
+  display: none;
 }
 
 #warning-message {
