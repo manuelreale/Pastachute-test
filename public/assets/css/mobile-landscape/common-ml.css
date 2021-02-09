@@ -1,12 +1,14 @@
 :root {
-  /* LAYERS Z-INDEX */
-    --bottom-layer: 0;
-    --waiting-room-layer: 100;
-    --header-layer: 800;
-    --overlay-layer: 850;
+/* LAYERS Z-INDEX */
+  --bottom-layer: 0;
+  --waiting-room-layer: 100;
+  --header-layer: 800;
+  --marquee-layer: 850;
+  --overlay-layer: 900;
 
-  --top-margin:2vw;
-  --margin:4vw;
+/* MARGINS */
+  --margin:2vw;
+  --bottom-margin: 3vw;
 }
 
 body {
@@ -22,15 +24,43 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+/* LAYERS Z-INDEX */
+#home-text-content, #scroll {  z-index: var(--bottom-layer)  }
+
+.overlay, .closebtn, #troppo-italiano {  z-index: var(--overlay-layer)  }
+
+#header {  z-index: var(--header-layer)  }
+
+marquee{
+  z-index: var(--marquee-layer)
+}
+
 
 /* HEADER */
 #header{
-  top: 0;
   width: 100%;
   position: fixed;
-  padding-top: var(--mobile-topmargin);
-  z-index: var(--header-layer);
+  top: 0;
+  display: flex;
 }
+
+.header-btn{
+position: absolute;
+bottom: 10%;
+font-family: baskerville-urw;
+font-style: italic;
+font-weight: 400;
+color: black;
+font-size: 3vh;
+display: inline-flex;
+cursor: pointer;
+}
+
+#about-btn {left: var(--margin);}
+
+#ranking-btn {right: var(--margin);}
+
+
 
 #title{
   margin: auto;
@@ -38,23 +68,11 @@ body::-webkit-scrollbar {
   font-weight: 600;
   text-align: center;
   color: black;
-  font-size: 10vh;
+  font-size: 5vw;
+  bottom: 0%;
+  display: inline-flex;
+  /* border: solid; */
 }
-
-.header-btn{
-position: absolute;
-bottom: 0%;
-font-family: baskerville-urw;
-font-style: italic;
-font-weight: 400;
-color: black;
-font-size: 5vh;
-display: inline-flex;
-}
-
-#about-btn{left: var(--margin);}
-
-#ranking-btn{right: var(--margin);}
 
 
 
@@ -63,22 +81,19 @@ display: inline-flex;
 .overlay {
     height: 100vh;
     position: fixed;
-    z-index: var(--overlay-layer);
     top: 0;
     background-color: white;
     overflow: hidden;
     transition: 0.5s;
 }
 
-.overlay::-webkit-scrollbar {
-  display: none;
-}
-
 .overlay-content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+top: var(--margin);
+bottom: var(--margin);
+left: var(--margin);
+right: var(--margin);
+position: absolute;
+height: auto;
 }
 
 .overlay-header{
@@ -87,16 +102,15 @@ display: inline-flex;
   font-family: baskerville-urw;
   font-style: italic;
   font-weight: 400;
-  top: 0%;
-  left: 10vh;
+  top: 0;
   margin: 0;
+  transform:translate(0, -29%);
 }
 
 .closebtn{
   position: absolute;
   right: var(--margin);
-  top: 5%;
-  z-index: var(--overlay-layer);
+  top: var(--margin);
   cursor: pointer;
 }
 
@@ -113,41 +127,72 @@ display: inline-flex;
 }
 
 #about-text{
-  top: 20%;
   position: absolute;
+  top: 50vh;
+  width: 96vw;
+  transform:translate(0, -80%);
   font-family: neue-haas-grotesk-display;
   font-weight: 400;
-  font-size: 10vh;
+  font-size: 8vh;
+}
+
+.overlay a {
+color: black;}
+
+.overlay a:hover {
+color: red;
+font-style: italic;
 }
 
 
-#freccia{
-  position: absolute;
-  bottom: 0;
-  width: 15vw;
-  height: 15vw;
-  left: 50%;
-  transform:translate(-50%, 0%);
-  z-index: var(--overlay-layer);
-}
-
-#crediti{
+#credits {
 display: none;
-margin-bottom: 50vh;
-text-align: left;
+position: absolute;
+bottom: 0;
 }
 
-
-#crediti-text{
-  top: 0%;
-  left: 10vh;
-  position: relative;
+.credits-paragraph {
   font-family: baskerville-urw;
   font-style: italic;
   font-weight: 200;
-  font-size: 5vh;
+  font-size: 1.8vw;
+  cursor: pointer;
+  line-height: 0.6;
 }
 
+.credits-paragraph a {
+  text-decoration: none;
+}
+
+#troppo-italiano {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 7vw;
+  cursor: pointer;
+
+  animation: troppo-italiana 1s infinite;
+  -webkit-animation: troppo-italiana 1s infinite;
+
+  -webkit-transition: -webkit-transform .1s;
+          transition:         transform .1s;
+}
+
+
+
+#troppo-italiano:hover, #troppo-italiano:focus {
+  animation-play-state: paused;
+
+  -webkit-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+}
+
+
+@keyframes troppo-italiana {
+  0% {bottom: 0vh}
+  50% {bottom: 4vh}
+  100% {bottom: 0vh}
+}
 
 
 
@@ -209,8 +254,11 @@ text-align: center;
 
 
 
+
+
+
 /* MARQUEE */
-.marquee {
+marquee {
   bottom: 0;
   position: fixed;
   background-color: red;
@@ -219,8 +267,8 @@ text-align: center;
 
 #text-marquee {
   font-family: sans-serif;
-  font-size: 2vw;
+  font-size: 1vw;
   color: white;
   line-height: 1;
-  transform:translate(0, -50%);
+  transform:translate(0, -75%);
 }
