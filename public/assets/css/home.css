@@ -27,7 +27,7 @@
   200	{display: block}
   }
 
-  #animated-background {width: 54vw; z-index: -50; position: fixed; left: 22vw; bottom: 0}
+  #animated-background {width: 56vw; z-index: -50; position: fixed; left: 22vw; bottom: 0vh}
 
 
 #home-text-content {
