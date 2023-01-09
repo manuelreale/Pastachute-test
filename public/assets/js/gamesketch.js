@@ -129,12 +129,13 @@ function setup() {
   World.add(world, ground);
 
   var firebaseConfig = {
-    apiKey: "AIzaSyDScoKt2ZZSpZxy7gikG5RgCUM_x837BBI",
-    authDomain: "pastachutedraw.firebaseapp.com",
-    projectId: "pastachutedraw",
-    storageBucket: "pastachutedraw.appspot.com",
-    messagingSenderId: "529526462285",
-    appId: "1:529526462285:web:9b46b9ca57c23363668904"
+    apiKey: "AIzaSyCoSRvhYomupNETksqGV0FVtEpi7Yv1s64",
+  authDomain: "pastachute.firebaseapp.com",
+  projectId: "pastachute",
+  storageBucket: "pastachute.appspot.com",
+  messagingSenderId: "982153381746",
+  appId: "1:982153381746:web:de0b38d820d607151b3feb",
+  measurementId: "G-GH5S7TEXHZ"
   };
 
   // Initialize Firebase
